@@ -8,7 +8,9 @@
   "client": [
     "ChatHudMixin",
     "InGameHudMixin",
-    "TextRendererMixin"
+    "TextRendererMixin",
+    "ItemStackMixin",
+    "ClientPlayNetworkHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -187,19 +187,11 @@ public class TranslationEngine {
                 continue;
             }
 
-            if (mode == ModConfig.ItemTooltipMode.REPLACE) {
-                MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
+            MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
+            if (line.getStyle() != null) {
                 translatedLine.setStyle(line.getStyle());
-                processed.add(translatedLine);
-            } else if (mode == ModConfig.ItemTooltipMode.APPEND) {
-                processed.add(line);
-                MutableText viLine = Text.literal("§7↳ §e" + translated);
-                processed.add(viLine);
-            } else if (mode == ModConfig.ItemTooltipMode.HOVER_OR_SHIFT) {
-                MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
-                translatedLine.setStyle(line.getStyle());
-                processed.add(translatedLine);
             }
+            processed.add(translatedLine);
         }
 
         return processed;
