@@ -37,8 +37,8 @@ public class WynncraftVietnamese implements ClientModInitializer {
         ConfigManager.load();
         TranslationEngine.getInstance().init();
 
-        // 2. Register Item Tooltip Callback (Safe Fabric API)
-        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+        // 2. Register Item Tooltip Callback (Fabric API 1.21.4)
+        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
             List<Text> modified = TranslationEngine.getInstance().processItemTooltip(lines);
             if (modified != lines) {
                 lines.clear();
@@ -46,7 +46,7 @@ public class WynncraftVietnamese implements ClientModInitializer {
             }
         });
 
-        // 3. Register Keybindings (Cross-version 3-arg constructor)
+        // 3. Register Keybindings
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.wynncraft_vi.toggle",
                 GLFW.GLFW_KEY_V,
