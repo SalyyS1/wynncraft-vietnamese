@@ -1,21 +1,23 @@
 package net.wynncraft.vi.mixin;
 
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.text.Text;
 import net.wynncraft.vi.translation.TranslationEngine;
 import net.wynncraft.vi.translation.format.WynnFontShield;
+import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-@Mixin(DrawContext.class)
-public class DrawContextMixin {
+@Mixin(TextRenderer.class)
+public class TextRendererMixin {
 
     @ModifyVariable(
-            method = "drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I",
+            method = "draw(Lnet/minecraft/text/Text;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I",
             at = @At("HEAD"),
-            argsOnly = true
+            argsOnly = true,
+            require = 0
     )
     private Text modifyDrawText(Text text) {
         if (text == null) return null;
@@ -27,11 +29,12 @@ public class DrawContextMixin {
     }
 
     @ModifyVariable(
-            method = "drawText(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;IIIZ)I",
+            method = "draw(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I",
             at = @At("HEAD"),
-            argsOnly = true
+            argsOnly = true,
+            require = 0
     )
-    private String modifyDrawTextString(String text) {
+    private String modifyDrawString(String text) {
         if (text == null || text.isEmpty()) return text;
         if (WynnFontShield.isPurePuaGlyphs(text)) {
             return text;

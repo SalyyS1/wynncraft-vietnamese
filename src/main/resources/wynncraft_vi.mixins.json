@@ -8,7 +8,7 @@
   "client": [
     "ChatHudMixin",
     "InGameHudMixin",
-    "DrawContextMixin"
+    "TextRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
