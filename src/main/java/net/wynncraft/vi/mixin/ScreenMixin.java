@@ -15,7 +15,8 @@ public class ScreenMixin {
     @Inject(
             method = "getTitle",
             at = @At("RETURN"),
-            cancellable = true
+            cancellable = true,
+            require = 0
     )
     private void modifyScreenTitle(CallbackInfoReturnable<Text> cir) {
         Text original = cir.getReturnValue();

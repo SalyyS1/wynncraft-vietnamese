@@ -14,7 +14,8 @@ public class InGameHudMixin {
     @ModifyVariable(
             method = "setOverlayMessage",
             at = @At("HEAD"),
-            argsOnly = true
+            argsOnly = true,
+            require = 0
     )
     private Text modifyOverlayMessage(Text message) {
         if (message == null || !ConfigManager.getConfig().translateActionBar) {
@@ -26,7 +27,8 @@ public class InGameHudMixin {
     @ModifyVariable(
             method = "setTitle",
             at = @At("HEAD"),
-            argsOnly = true
+            argsOnly = true,
+            require = 0
     )
     private Text modifyTitle(Text title) {
         if (title == null || !ConfigManager.getConfig().translateTitles) {
@@ -38,7 +40,8 @@ public class InGameHudMixin {
     @ModifyVariable(
             method = "setSubtitle",
             at = @At("HEAD"),
-            argsOnly = true
+            argsOnly = true,
+            require = 0
     )
     private Text modifySubtitle(Text subtitle) {
         if (subtitle == null || !ConfigManager.getConfig().translateTitles) {

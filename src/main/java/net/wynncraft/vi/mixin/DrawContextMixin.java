@@ -16,7 +16,8 @@ public class DrawContextMixin {
             method = "drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I",
             at = @At("HEAD"),
             argsOnly = true,
-            index = 2
+            index = 2,
+            require = 0
     )
     private Text modifyDrawText(Text text) {
         if (text == null || !ConfigManager.getConfig().enabled || !ConfigManager.getConfig().translateGuiAndWynntils) {
@@ -29,7 +30,8 @@ public class DrawContextMixin {
             method = "drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)I",
             at = @At("HEAD"),
             argsOnly = true,
-            index = 2
+            index = 2,
+            require = 0
     )
     private Text modifyDrawTextWithShadow(Text text) {
         if (text == null || !ConfigManager.getConfig().enabled || !ConfigManager.getConfig().translateGuiAndWynntils) {

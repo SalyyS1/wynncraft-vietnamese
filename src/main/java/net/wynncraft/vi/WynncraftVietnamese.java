@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.wynncraft.vi.config.ConfigManager;
 import net.wynncraft.vi.config.ModConfig;
@@ -47,17 +46,15 @@ public class WynncraftVietnamese implements ClientModInitializer {
             }
         });
 
-        // 3. Register Keybindings
+        // 3. Register Keybindings (Cross-version 3-arg constructor)
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.wynncraft_vi.toggle",
-                InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_V,
                 "category.wynncraft_vi"
         ));
 
         configKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.wynncraft_vi.config",
-                InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
                 "category.wynncraft_vi"
         ));

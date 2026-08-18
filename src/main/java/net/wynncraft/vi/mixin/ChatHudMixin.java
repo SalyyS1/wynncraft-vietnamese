@@ -15,7 +15,8 @@ public class ChatHudMixin {
             method = "addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;Lnet/minecraft/client/gui/hud/MessageIndicator;)V",
             at = @At("HEAD"),
             argsOnly = true,
-            index = 1
+            index = 1,
+            require = 0
     )
     private Text modifyChatHudMessage(Text message) {
         if (message == null) {
