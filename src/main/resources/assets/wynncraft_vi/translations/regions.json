@@ -1,0 +1,33 @@
+{
+  "exact": {
+    "Province of Wynn": "Đại Lục Wynn - Vùng đất khởi nguồn của nền văn minh loài người, nơi các chiến binh kiên cường chiến đấu chống lại thế lực Tha Hóa.",
+    "Province of Gavel": "Đại Lục Gavel - Xứ sở ma thuật cổ xưa của Tiên Tộc Villager và Yêu Tinh, nơi ngự trị của Thần Thú Ánh Sáng Orphion.",
+    "Island of Corkus": "Quần Đảo Cơ Giới Corkus - Vùng đất biệt lập của những cỗ máy cơ khí và công nghệ hơi nước tiên tiến.",
+    "Silent Expanse": "Hoang Mạc Tĩnh Lặng - Vùng đất cấm địa bị bóng tối nuốt chửng, nơi ranh giới giữa thực tại và cõi Hư Không Dern bị xé toạc.",
+    "Dern Province": "Cõi Hư Không Dern - Chiều không gian hắc ám vô tận, cội nguồn của mọi sự ô nhiễm và quái vật Tha Hóa.",
+    "Fruma Province": "Đế Chế Fruma - Vùng đất bức tường thành khép kín, quê hương xuất thân của mọi tân binh lữ khách.",
+    "Sky Islands": "Quần Đảo Thiên Không - Các hòn đảo lơ lửng giữa tầng mây, thánh địa của Thần Tộc Avo hùng mạnh.",
+    "Ocean": "Đại Dương Vô Tận - Vùng biển rộng lớn nối liền các lục địa, nơi ẩn chứa các đảo hoang và quái vật biển sâu.",
+    "Ragni Castle": "Lâu Đài Ragni - Pháo đài cổ kính bảo vệ cổng vào đại lục Wynn, nơi đặt ngai vàng của Hoàng Gia Ragni.",
+    "Detlas City": "Đại Đô Thị Detlas - Trái tim kinh tế và giao thương nhộn nhịp nhất của toàn cõi Wynn.",
+    "Almuj Oasis": "Ốc Đảo Almuj - Viên ngọc quý giữa lòng sa mạc cằn cỗi, trung tâm buôn bán của các thương buôn lạc đà.",
+    "Troms Fortress": "Pháo Đài Troms - Tiền đồn kiên cố án ngữ cửa rừng rậm, nơi huấn luyện các chiến binh tinh nhuệ.",
+    "Nemract Port": "Thị Trấn Cảng Nemract - Bến cảng sầm uất ven bờ biển phía đông, nổi tiếng với món cá tươi và những câu chuyện ma mị.",
+    "Llevigar Harbor": "Thành Phố Cảng Llevigar - Cửa ngõ chính đón nhận các chuyến tàu vượt đại dương từ Wynn sang Gavel.",
+    "Olux Swamp": "Đầm Lầy Olux - Vùng đất ẩm ướt đầy cạm bẫy độc hại, nơi cư ngụ của các tư tế bí ẩn.",
+    "Cinfras Capital": "Kinh Đô Cinfras - Thủ phủ hoa lệ của Đại lục Gavel, trung tâm học thuật và chính trị của Tiên Tộc.",
+    "Aldorei Valley": "Thung Lũng Aldorei - Thánh địa khép kín của dòng dõi Thượng Tiên Elves bảo vệ Cây Thế Giới.",
+    "Ahmsord City": "Thành Phố Ahmsord - Đô thị trên mây tráng lệ, nơi con người chung sống hòa bình cùng Thần Tộc Avo.",
+    "Lutho Town": "Thị Trấn Lutho - Điểm dừng chân cuối cùng của sự sống trước khi bước vào ranh giới Hoang Mạc Tĩnh Lặng.",
+    "Thesead Town": "Thị Trấn Thesead - Vùng vách núi cheo leo hiểm trở nổi tiếng với các hầm mỏ đá quý.",
+    "Rodoroc": "Đô Thị Dung Nham Rodoroc - Kinh đô dưới lòng núi lửa của Tộc Người Lùn thợ rèn cừ khôi.",
+    "Kander Forest": "Khu Rừng Hắc Ám Kander - Nơi ánh sáng mặt trời không thể xuyên qua những tán cây cổ thụ u ám.",
+    "Dernel Jungle": "Rừng Rậm Dernel - Khu rừng nguyên sinh rậm rạp ẩn chứa những di tích cổ xưa của đế chế đã lụi tàn."
+  },
+  "regex": {
+    "Entering (.+)": "Đang tiến vào $1",
+    "Leaving (.+)": "Đang rời khỏi $1",
+    "Discovering (.+)": "Đã khám phá địa danh bí mật: $1",
+    "Territory of (.+)": "Lãnh địa thuộc về $1"
+  }
+}

@@ -10,13 +10,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.URI;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class DictionaryManager {
     private static final Logger LOGGER = LoggerFactory.getLogger("WynncraftVI-Dict");
@@ -39,22 +40,23 @@ public class DictionaryManager {
         exactDictionary.clear();
         regexDictionary.clear();
 
-        // 1. Load bundled manual translation files from resources
+        // 1. Load bundled manual translation files
         String[] bundled = {
                 "/assets/wynncraft_vi/translations/general.json",
                 "/assets/wynncraft_vi/translations/items.json",
                 "/assets/wynncraft_vi/translations/quests.json",
-                "/assets/wynncraft_vi/translations/dialogues.json"
+                "/assets/wynncraft_vi/translations/dialogues.json",
+                "/assets/wynncraft_vi/translations/regions.json"
         };
 
         for (String res : bundled) {
             loadBundledResource(res);
         }
 
-        // 2. Load custom user translation files from .minecraft/config/wynncraft_vi/translations/
-        loadUserTranslations();
+        // 2. Load custom user translation files recursively from .minecraft/config/wynncraft_vi/translations/
+        loadUserTranslationsRecursively();
 
-        LOGGER.info("Manual dictionary loaded: {} exact entries, {} regex patterns.",
+        LOGGER.info("Complete dictionary loaded: {} exact entries, {} regex patterns.",
                 exactDictionary.size(), regexDictionary.size());
     }
 
@@ -72,7 +74,7 @@ public class DictionaryManager {
         }
     }
 
-    private void loadUserTranslations() {
+    private void loadUserTranslationsRecursively() {
         Path customDir = FabricLoader.getInstance().getConfigDir().resolve("wynncraft_vi").resolve("translations");
         try {
             if (!Files.exists(customDir)) {
@@ -81,14 +83,16 @@ public class DictionaryManager {
                 return;
             }
 
-            try (DirectoryStream<Path> stream = Files.newDirectoryStream(customDir, "*.json")) {
-                for (Path entry : stream) {
-                    try (Reader reader = Files.newBufferedReader(entry, StandardCharsets.UTF_8)) {
-                        parseDictionaryJson(reader, "user:" + entry.getFileName());
-                    } catch (Exception e) {
-                        LOGGER.error("Failed to load custom dictionary {}: {}", entry.getFileName(), e.getMessage());
-                    }
-                }
+            try (Stream<Path> stream = Files.walk(customDir)) {
+                stream.filter(Files::isRegularFile)
+                        .filter(p -> p.toString().endsWith(".json"))
+                        .forEach(path -> {
+                            try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+                                parseDictionaryJson(reader, "user:" + path.getFileName());
+                            } catch (Exception e) {
+                                LOGGER.error("Failed to load custom dictionary {}: {}", path.getFileName(), e.getMessage());
+                            }
+                        });
             }
         } catch (Exception e) {
             LOGGER.error("Error scanning user translations folder: {}", e.getMessage());

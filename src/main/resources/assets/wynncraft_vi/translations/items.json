@@ -153,6 +153,19 @@
     "Thunder Defence:\\\\s*([+-]?\\\\d+)%?": "Phòng Ngự Lôi: %",
     "Water Defence:\\\\s*([+-]?\\\\d+)%?": "Phòng Ngự Thủy: %",
     "Fire Defence:\\\\s*([+-]?\\\\d+)%?": "Phòng Ngự Hỏa: %",
-    "Air Defence:\\\\s*([+-]?\\\\d+)%?": "Phòng Ngự Phong: %"
+    "Air Defence:\\\\s*([+-]?\\\\d+)%?": "Phòng Ngự Phong: %",
+    "Forged in the depths of (.+)": "Được tôi luyện trong vực sâu của $1",
+    "Forged in (.+)": "Được rèn đúc tại $1",
+    "Crafted with (.+)": "Được chế tác tinh xảo từ $1",
+    "Infused with the power of (.+)": "Thấm đượm thần lực của $1",
+    "A relic from the ancient times of (.+)": "Cổ vật nghìn năm từ thời đại $1",
+    "A relic from (.+)": "Cổ vật truyền thừa từ $1",
+    "Wielded by the legendary (.+)": "Từng được huyền thoại $1 sử dụng",
+    "Wielded by (.+)": "Từng thuộc sở hữu của $1",
+    "Contains the dark essence of (.+)": "Chứa đựng tà khí hắc ám của $1",
+    "Contains the essence of (.+)": "Chứa đựng tinh hoa của $1",
+    "An ancient (.+) recovered from (.+)": "$1 cổ xưa được khai quật từ $2",
+    "Right-Click to (.+)": "Nhấp chuột phải để $1",
+    "Sneak \\+ Right-Click to (.+)": "Ngồi (Shift) + Chuột phải để $1"
   }
 }
