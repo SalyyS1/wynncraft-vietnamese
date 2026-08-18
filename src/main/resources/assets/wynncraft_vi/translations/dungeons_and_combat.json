@@ -1,0 +1,27 @@
+{
+  "exact": {
+    "The dungeon gate opens before you.": "Cánh cổng hầm ngục đã mở ra trước mắt ngươi.",
+    "Defeat the guardian to progress further!": "Tiêu diệt hộ vệ canh cổng để tiến sâu hơn!",
+    "Dungeon Complete! Claim your rewards from the chest.": "Hoàn Thành Hầm Ngục! Hãy nhận phần thưởng từ rương báu.",
+    "You have run out of time! The dungeon collapses!": "Đã hết thời gian cho phép! Hầm ngục đang sụp đổ!",
+    "Dungeon Failed!": "Thất Bại Trong Hầm Ngục!",
+    "Witherhead: Fools! You shall join the sea of bones!": "Witherhead: Lũ ngu xuẩn! Các ngươi sẽ chôn xác cùng biển xương trắng này!",
+    "Arak: Sss... more flesh for my children!": "Arak: Sss... lại thêm con mồi tươi ngon cho đàn con của ta!",
+    "Garoth: None can withstand the power of the primal earth!": "Garoth: Không kẻ nào có thể chống lại sức mạnh của đại địa nguyên thủy!",
+    "Charon: The river of souls welcomes your demise!": "Charon: Dòng sông linh hồn hân hoan đón chào cái chết của các ngươi!",
+    "Hashr: The sands of time bury all who oppose me!": "Hashr: Bão cát thời gian sẽ chôn vùi tất cả những kẻ dám ngáng đường ta!",
+    "Qira: Welcome to my web, little insects... none escape!": "Qira: Chào mừng đến với mạng nhện của ta, lũ bọ nhỏ bé... không kẻ nào thoát được!",
+    "Bak'al: The corruption cannot be stopped by mere mortals!": "Bak'al: Sự tha hóa không bao giờ có thể bị ngăn cản bởi lũ phàm nhân các ngươi!",
+    "Raid Started! Prepare for the trial!": "Phụ Bản Đột Kích Đã Khởi Động! Hãy chuẩn bị chiến đấu!",
+    "Phase 1 Complete! Advancing to the next chamber!": "Giai đoạn 1 Hoàn Thành! Đang tiến vào phòng kế tiếp!",
+    "Phase 2 Complete! The boss room is now unlocked!": "Giai đoạn 2 Hoàn Thành! Phòng Trùm Cuối đã được mở khóa!",
+    "Raid Completed Successfully!": "Đột Kích Thành Công Tốt Đẹp!",
+    "Mythic drop rate boosted!": "Tỉ lệ rớt trang bị Thần Thánh (Mythic) đã được tăng cường!"
+  },
+  "regex": {
+    "([A-Za-z0-9_]+) has found a Mythic item: (.+)!": "Chúc mừng $1 vừa tìm thấy trang bị Thần Thánh: $2!",
+    "([A-Za-z0-9_]+) completed the (.+) Dungeon!": "$1 đã chinh phục thành công Hầm Ngục $2!",
+    "Phase (\\d+)/(\\d+)": "Giai đoạn $1/$2",
+    "Time remaining: (\\d+)m (\\d+)s": "Thời gian còn lại: $1 phút $2 giây"
+  }
+}
