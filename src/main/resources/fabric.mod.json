@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "wynncraft_vi",
+  "version": "${version}",
+  "name": "Wynncraft Vietnamese RPG",
+  "description": "Bản mod dịch thuật Tiếng Việt chuẩn ngữ cảnh RPG cho Wynncraft & tương thích Wynntils. Bản dịch bởi SalyVn.",
+  "authors": [
+    "SalyVn"
+  ],
+  "contact": {
+    "homepage": "https://github.com/SalyVn/wynncraft-vietnamese",
+    "sources": "https://github.com/SalyVn/wynncraft-vietnamese"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.wynncraft.vi.WynncraftVietnamese"
+    ],
+    "modmenu": [
+      "net.wynncraft.vi.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "wynncraft_vi.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=1.20.4",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "cloth-config": ">=13.0.0",
+    "modmenu": ">=9.0.0",
+    "wynntils": ">=2.0.0"
+  }
+}

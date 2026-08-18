@@ -1,0 +1,23 @@
+{
+  "exact": {
+    "Quest Started!": "Nhiệm Vụ Mới Bắt Đầu!",
+    "Quest Updated!": "Nhiệm Vụ Đã Cập Nhật Tiến Độ!",
+    "Quest Completed!": "Chúc Mừng! Nhiệm Vụ Đã Hoàn Thành!",
+    "Mini-Quest Started!": "Nhiệm Vụ Phụ Đã Bắt Đầu!",
+    "Mini-Quest Completed!": "Nhiệm Vụ Phụ Đã Hoàn Thành!",
+    "Select an option to continue": "Hãy chọn một phương án để đối thoại",
+    "Click here to continue": "Nhấp vào đây để tiếp tục hành trình",
+    "Press SHIFT to continue": "Nhấn phím SHIFT để tiếp tục lời thoại",
+    "Talk to the NPC to continue": "Hãy hội thoại với NPC để tiếp tục nhiệm vụ",
+    "You do not meet the requirements for this quest!": "Ngươi chưa đủ tư chất hoặc cấp độ để nhận nhiệm vụ này!",
+    "New Quest Available!": "Có Nhiệm Vụ Mới Đang Chờ Ngươi!",
+    "Task Completed!": "Mục Tiêu Đã Hoàn Thành!"
+  },
+  "regex": {
+    "Quest Started:\\\\s*(.+)": "Bắt Đầu Nhiệm Vụ Mới: ",
+    "Quest Completed:\\\\s*(.+)": "Đã Hoàn Thành Xuất Sắc Nhiệm Vụ: ",
+    "Rewards?:\\\\s*(.+)": "Phần Thưởng Nhận Được: ",
+    "(\\\\d+)\\\\s*Experience Points": " Điểm Kinh Nghiệm (XP)",
+    "(\\\\d+)\\\\s*Emeralds": " Ngọc Lục Bảo"
+  }
+}
