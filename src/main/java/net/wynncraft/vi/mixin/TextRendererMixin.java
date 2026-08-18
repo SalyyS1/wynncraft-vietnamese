@@ -22,7 +22,8 @@ public class TextRendererMixin {
     private Text modifyDrawText(Text text) {
         if (text == null) return null;
         String raw = text.getString();
-        if (WynnFontShield.isPurePuaGlyphs(raw)) {
+        // Strictly protect all custom font glyphs, negative space offsets, and UI textures
+        if (WynnFontShield.containsPuaGlyphs(raw)) {
             return text;
         }
         return TranslationEngine.getInstance().translateTextComponent(text);
@@ -36,7 +37,8 @@ public class TextRendererMixin {
     )
     private String modifyDrawString(String text) {
         if (text == null || text.isEmpty()) return text;
-        if (WynnFontShield.isPurePuaGlyphs(text)) {
+        // Strictly protect all custom font glyphs, negative space offsets, and UI textures
+        if (WynnFontShield.containsPuaGlyphs(text)) {
             return text;
         }
         String translated = TranslationEngine.getInstance().translateManual(text);

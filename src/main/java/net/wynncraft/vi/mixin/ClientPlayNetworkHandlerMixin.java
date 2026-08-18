@@ -5,6 +5,7 @@ import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.text.Text;
 import net.wynncraft.vi.config.ConfigManager;
 import net.wynncraft.vi.translation.TranslationEngine;
+import net.wynncraft.vi.translation.format.WynnFontShield;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -63,7 +64,9 @@ public class ClientPlayNetworkHandlerMixin {
             return packet;
         }
         Text original = packet.text();
-        if (original == null) return packet;
+        if (original == null || WynnFontShield.containsPuaGlyphs(original.getString())) {
+            return packet;
+        }
 
         Text translated = TranslationEngine.getInstance().translateTextComponent(original);
         if (translated != original) {
@@ -83,7 +86,9 @@ public class ClientPlayNetworkHandlerMixin {
             return packet;
         }
         Text original = packet.text();
-        if (original == null) return packet;
+        if (original == null || WynnFontShield.containsPuaGlyphs(original.getString())) {
+            return packet;
+        }
 
         Text translated = TranslationEngine.getInstance().translateTextComponent(original);
         if (translated != original) {
@@ -103,7 +108,9 @@ public class ClientPlayNetworkHandlerMixin {
             return packet;
         }
         Text original = packet.text();
-        if (original == null) return packet;
+        if (original == null || WynnFontShield.containsPuaGlyphs(original.getString())) {
+            return packet; // Do not touch Action Bar messages that contain custom font textures / negative spaces
+        }
 
         Text translated = TranslationEngine.getInstance().translateTextComponent(original);
         if (translated != original) {
