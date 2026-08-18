@@ -29,6 +29,7 @@ public class WynncraftVietnamese implements ClientModInitializer {
 
     private static KeyBinding toggleKey;
     private static KeyBinding configKey;
+    private static boolean hasWelcomed = false;
 
     @Override
     public void onInitializeClient() {
@@ -96,7 +97,8 @@ public class WynncraftVietnamese implements ClientModInitializer {
 
         // 5. Welcome & Credit message upon joining server
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            if (ConfigManager.getConfig().showCreditBadge && client.player != null) {
+            if (ConfigManager.getConfig().showCreditBadge && client.player != null && !hasWelcomed) {
+                hasWelcomed = true;
                 client.execute(() -> {
                     client.player.sendMessage(Text.literal("§6========================================"), false);
                     client.player.sendMessage(Text.literal("§e✦ Wynncraft Tiếng Việt (RPG Edition) §aĐã kích hoạt!"), false);
@@ -105,6 +107,10 @@ public class WynncraftVietnamese implements ClientModInitializer {
                     client.player.sendMessage(Text.literal("§6========================================"), false);
                 });
             }
+        });
+
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+            hasWelcomed = false;
         });
 
         // 6. Register Client Commands (/wynnvi)

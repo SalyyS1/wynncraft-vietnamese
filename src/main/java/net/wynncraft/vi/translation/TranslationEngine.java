@@ -56,19 +56,45 @@ public class TranslationEngine {
             return null;
         }
 
-        // If string contains PUA font glyphs, try translating the non-glyph portion
-        if (WynnFontShield.containsPuaGlyphs(clean)) {
-            String nonPua = WynnFontShield.stripPuaGlyphs(clean).trim();
-            if (!nonPua.isEmpty()) {
-                String match = dictionaryManager.findTranslation(nonPua);
-                if (match != null) {
-                    return match;
-                }
-            }
-            return null;
+        // 1. Direct dictionary match
+        String match = dictionaryManager.findTranslation(clean);
+        if (match != null) {
+            return match;
         }
 
-        return dictionaryManager.findTranslation(clean);
+        // 2. Normalized unicode quotes (“ ” ‘ ’) match
+        String normalizedQuotes = clean.replace('“', '"').replace('”', '"').replace('‘', '\'').replace('’', '\'');
+        if (!normalizedQuotes.equals(clean)) {
+            String matchQ = dictionaryManager.findTranslation(normalizedQuotes);
+            if (matchQ != null) {
+                return matchQ;
+            }
+        }
+
+        // 3. Leading checkmarks (✔, ✓) or PUA icons
+        if (clean.startsWith("✔") || clean.startsWith("✓") || clean.startsWith("-") || WynnFontShield.containsPuaGlyphs(clean)) {
+            String prefix = "";
+            String body = clean;
+            if (clean.startsWith("✔") || clean.startsWith("✓")) {
+                prefix = clean.substring(0, 1) + " ";
+                body = clean.substring(1).trim();
+            } else if (WynnFontShield.containsPuaGlyphs(clean)) {
+                body = WynnFontShield.stripPuaGlyphs(clean).trim();
+            }
+
+            if (!body.isEmpty()) {
+                String matchBody = dictionaryManager.findTranslation(body);
+                if (matchBody == null) {
+                    String normBody = body.replace('“', '"').replace('”', '"');
+                    matchBody = dictionaryManager.findTranslation(normBody);
+                }
+                if (matchBody != null) {
+                    return prefix + matchBody;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**

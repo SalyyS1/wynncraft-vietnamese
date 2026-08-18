@@ -12,7 +12,7 @@ public class ModConfig {
     public boolean translateSystemChat = true;
 
     // Display & Credit preferences
-    public ItemTooltipMode itemTooltipMode = ItemTooltipMode.APPEND;
+    public ItemTooltipMode itemTooltipMode = ItemTooltipMode.REPLACE;
     public boolean showCreditBadge = true;
 
     public enum ItemTooltipMode {
