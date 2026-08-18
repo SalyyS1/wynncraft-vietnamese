@@ -20,6 +20,7 @@ import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Constructor;
 import java.util.List;
 
 public class WynncraftVietnamese implements ClientModInitializer {
@@ -34,47 +35,61 @@ public class WynncraftVietnamese implements ClientModInitializer {
         LOGGER.info("Starting Wynncraft Vietnamese Translation Mod (By SalyVn)...");
 
         // 1. Load Configurations & Engine
-        ConfigManager.load();
-        TranslationEngine.getInstance().init();
+        try {
+            ConfigManager.load();
+            TranslationEngine.getInstance().init();
+        } catch (Throwable t) {
+            LOGGER.error("Failed to initialize translation engine", t);
+        }
 
-        // 2. Register Item Tooltip Callback (Fabric API 1.21.4)
-        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
-            List<Text> modified = TranslationEngine.getInstance().processItemTooltip(lines);
-            if (modified != lines) {
-                lines.clear();
-                lines.addAll(modified);
+        // 2. Register Item Tooltip Callback
+        try {
+            ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
+                List<Text> modified = TranslationEngine.getInstance().processItemTooltip(lines);
+                if (modified != lines) {
+                    lines.clear();
+                    lines.addAll(modified);
+                }
+            });
+        } catch (Throwable t) {
+            LOGGER.warn("ItemTooltipCallback registration error: {}", t.getMessage());
+        }
+
+        // 3. Register Keybindings safely via dynamic constructor resolution
+        try {
+            toggleKey = createKeyBinding("key.wynncraft_vi.toggle", GLFW.GLFW_KEY_V, "category.wynncraft_vi");
+            if (toggleKey != null) {
+                KeyBindingHelper.registerKeyBinding(toggleKey);
             }
-        });
 
-        // 3. Register Keybindings
-        toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.wynncraft_vi.toggle",
-                GLFW.GLFW_KEY_V,
-                "category.wynncraft_vi"
-        ));
-
-        configKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.wynncraft_vi.config",
-                GLFW.GLFW_KEY_O,
-                "category.wynncraft_vi"
-        ));
+            configKey = createKeyBinding("key.wynncraft_vi.config", GLFW.GLFW_KEY_O, "category.wynncraft_vi");
+            if (configKey != null) {
+                KeyBindingHelper.registerKeyBinding(configKey);
+            }
+        } catch (Throwable t) {
+            LOGGER.warn("Keybinding registration error (commands /wynnvi are still active): {}", t.getMessage());
+        }
 
         // 4. Register Key Listeners
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (toggleKey.wasPressed()) {
-                ModConfig config = ConfigManager.getConfig();
-                config.enabled = !config.enabled;
-                ConfigManager.save();
+            if (toggleKey != null) {
+                while (toggleKey.wasPressed()) {
+                    ModConfig config = ConfigManager.getConfig();
+                    config.enabled = !config.enabled;
+                    ConfigManager.save();
 
-                String status = config.enabled ? "§aBẬT" : "§cTẮT";
-                if (client.player != null) {
-                    client.player.sendMessage(Text.literal("§6[Wynncraft VI] §fDịch Tiếng Việt: " + status), false);
+                    String status = config.enabled ? "§aBẬT" : "§cTẮT";
+                    if (client.player != null) {
+                        client.player.sendMessage(Text.literal("§6[Wynncraft VI] §fDịch Tiếng Việt: " + status), false);
+                    }
                 }
             }
 
-            while (configKey.wasPressed()) {
-                if (client.currentScreen == null) {
-                    client.setScreen(new ModMenuIntegration().getModConfigScreenFactory().create(null));
+            if (configKey != null) {
+                while (configKey.wasPressed()) {
+                    if (client.currentScreen == null) {
+                        client.setScreen(new ModMenuIntegration().getModConfigScreenFactory().create(null));
+                    }
                 }
             }
         });
@@ -103,6 +118,43 @@ public class WynncraftVietnamese implements ClientModInitializer {
         });
 
         LOGGER.info("Wynncraft Vietnamese Translation Mod loaded successfully! Credit: SalyVn");
+    }
+
+    /**
+     * Dynamically finds and invokes the exact KeyBinding constructor available at runtime.
+     * Prevents NoSuchMethodError across varying Minecraft / Fabric / Lunar bytecode versions.
+     */
+    private static KeyBinding createKeyBinding(String id, int keyCode, String category) {
+        try {
+            for (Constructor<?> c : KeyBinding.class.getConstructors()) {
+                Class<?>[] params = c.getParameterTypes();
+
+                // 4-parameter constructor: (String, InputUtil.Type, int, String)
+                if (params.length == 4 && params[0] == String.class && (params[2] == int.class || params[2] == Integer.class) && params[3] == String.class) {
+                    Object typeEnum = null;
+                    if (params[1].isEnum()) {
+                        for (Object constant : params[1].getEnumConstants()) {
+                            if (constant.toString().equalsIgnoreCase("KEYSYM")) {
+                                typeEnum = constant;
+                                break;
+                            }
+                        }
+                        if (typeEnum == null && params[1].getEnumConstants().length > 0) {
+                            typeEnum = params[1].getEnumConstants()[0];
+                        }
+                    }
+                    return (KeyBinding) c.newInstance(id, typeEnum, keyCode, category);
+                }
+
+                // 3-parameter constructor: (String, int, String)
+                if (params.length == 3 && params[0] == String.class && (params[1] == int.class || params[1] == Integer.class) && params[2] == String.class) {
+                    return (KeyBinding) c.newInstance(id, keyCode, category);
+                }
+            }
+        } catch (Throwable t) {
+            LOGGER.error("Could not reflectively construct KeyBinding for {}", id, t);
+        }
+        return null;
     }
 
     private void registerCommands() {
