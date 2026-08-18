@@ -27,7 +27,35 @@
     "Be careful out there in the wilds!": "Hãy bảo trọng khi bước ra ngoài vùng hoang dã nguy hiểm!",
     "I have nothing more to say to you.": "Ta không còn điều gì để nói với ngươi nữa.",
     "Good luck on your journey!": "Chúc may mắn trên chuyến hành trình của ngươi!",
-    "May the Light guide your path.": "Cầu mong Ánh Sáng soi đường dẫn lối cho ngươi."
+    "May the Light guide your path.": "Cầu mong Ánh Sáng soi đường dẫn lối cho ngươi.",
+    "to continue": "để tiếp tục",
+    "SHIFT to continue": "SHIFT để tiếp tục",
+    "Press SHIFT to continue": "Nhấn SHIFT để tiếp tục",
+    "Press SPACE to skip": "Nhấn SPACE để bỏ qua",
+    "Select an option:": "Chọn một lựa chọn:",
+    "Click to select": "Nhấp để chọn",
+    "Click to advance dialogue": "Nhấp để tiếp tục thoại",
+    "Click to continue": "Nhấp để tiếp tục",
+    "Heya! Heard from the mayor that you helped out the town! Can't thank you enough for that.": "Chào bạn! Tôi nghe thị trưởng kể là bạn đã cứu giúp thị trấn! Thật không biết cảm ơn bạn sao cho thỏa.",
+    "The water in the well is crystal clear now, thanks to you!": "Nước trong giếng giờ đã trong vắt trở lại rồi, tất cả là nhờ có bạn!",
+    "Maltic is forever in your debt, brave soldier!": "Làng Maltic mãi mãi ghi nhớ ơn nghĩa của bạn, hỡi người lính dũng cảm!",
+    "Be careful when venturing into the Coastal Trail.": "Hãy cẩn thận khi bước chân vào Con Đường Ven Biển nhé.",
+    "Have you visited the local farm? The crops are growing wonderfully.": "Bạn đã ghé thăm nông trang chưa? Mùa màng đang tươi tốt tuyệt vời.",
+    "Greetings, recruit! Ragni stands tall against the darkness!": "Kính chào tân binh! Thành Ragni vẫn hiên ngang đứng vững trước bóng tối!",
+    "The King is looking for capable soldiers to defend our borders.": "Đức Vua đang tìm kiếm những chiến binh tài ba để bảo vệ bờ cõi.",
+    "Stay on the path if you want to avoid corrupted beasts.": "Hãy bám sát con đường chính nếu muốn tránh quái thú tha hóa.",
+    "Ragni's walls have never fallen, and they never will!": "Tường thành Ragni chưa từng sụp đổ, và sẽ không bao giờ sụp đổ!",
+    "Buy some potions from the merchant before heading east.": "Hãy mua một ít bình thuốc từ thương nhân trước khi tiến về phía đông.",
+    "Welcome to Detlas, the crossroads of the Wynn Province!": "Chào mừng đến với Detlas, ngã tư giao thương sầm uất của Đại Lục Wynn!",
+    "You can find almost anything on the Trade Market here.": "Bạn có thể tìm thấy hầu như mọi thứ tại Sàn Giao Dịch ở đây.",
+    "Watch your pockets! Detlas is crowded with all sorts of folk.": "Coi chừng túi tiền của bạn! Detlas rất đông đúc đủ loại người qua lại.",
+    "The Airbase to Gavel is just north of here.": "Căn cứ Khí Cầu đến Gavel nằm ngay phía bắc nơi này.",
+    "The desert heat is unforgiving. Drink plenty of water, traveler.": "Cái nóng sa mạc vô cùng khắc nghiệt. Hãy uống nhiều nước nhé lữ khách.",
+    "Beware of the sandstorms; they conceal ancient bandits and cursed mummies.": "Hãy coi chừng những trận bão cát; chúng che giấu lũ thổ phỉ và xác ướp bị nguyền rủa.",
+    "The oasis of Almuj is our pride and joy.": "Ốc đảo Almuj là niềm tự hào và sự sống của chúng tôi.",
+    "Dress warmly! The frost of Nesaak will freeze you to the bone.": "Mặc ấm vào! Cái lạnh cắt da cắt thịt của Nesaak sẽ làm bạn cóng buốt đến tận xương tủy.",
+    "Bob's spirit is said to watch over the frozen plains.": "Linh hồn của Bob được tương truyền vẫn luôn dõi theo thảo nguyên băng giá này.",
+    "Stay clear of the wolves roaming outside the town gates.": "Hãy tránh xa bầy sói hung dữ lang thang bên ngoài cổng thị trấn."
   },
   "regex": {
     "(\\[NPC\\]\\s*)([A-Za-z0-9\\s_]+):\\s*(.+)": "$1$2: $3",
@@ -43,6 +71,9 @@
     "Return to (.+) in (.+)": "Quay trở lại gặp $1 tại $2",
     "Search for (.+) near (.+)": "Tìm kiếm $1 gần khu vực $2",
     "Investigate (.+) around (.+)": "Điều tra $1 xung quanh $2",
-    "Escort (.+) to (.+)": "Hộ tống $1 đến $2"
+    "Escort (.+) to (.+)": "Hộ tống $1 đến $2",
+    "Press (\\w+) to continue": "Nhấn $1 để tiếp tục",
+    "Press (\\w+) to skip": "Nhấn $1 để bỏ qua",
+    "Heard from (.+) that you (.+)!": "Nghe từ $1 rằng bạn $2!"
   }
 }
