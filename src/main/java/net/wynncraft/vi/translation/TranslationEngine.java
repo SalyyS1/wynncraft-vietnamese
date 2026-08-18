@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TranslationEngine {
     private static final Logger LOGGER = LoggerFactory.getLogger("WynncraftVI-Engine");
@@ -20,7 +18,7 @@ public class TranslationEngine {
 
     private final DictionaryManager dictionaryManager;
 
-    // Stat token replacements for PUA / formatted item stats
+    // Stat and UI token replacements for item tooltips and quest screens
     private static final Object[][] STAT_REPLACEMENTS = {
             {"Left-Click to play", "Chuột trái để chơi"},
             {"Right-Click to switch", "Chuột phải để đổi nhân vật"},
@@ -32,6 +30,21 @@ public class TranslationEngine {
             {"Press SHIFT to continue", "Nhấn SHIFT để tiếp tục"},
             {"Press SPACE to skip", "Nhấn SPACE để bỏ qua"},
             {"to continue", "để tiếp tục"},
+            {"Storyline – Currently in progress", "Cốt truyện – Đang thực hiện"},
+            {"Currently in progress", "Đang thực hiện"},
+            {"Solve this riddle in the tomb:", "Giải câu đố sau trong lăng mộ:"},
+            {"Throw tribute an item to the wood that stands out, the right angle will open the way", "Dâng vật phẩm tế lễ cho khúc gỗ nổi bật, góc vuông chuẩn xác sẽ mở lối đi"},
+            {"“Throw tribute an item to the wood that stands out, the right angle will open the way”", "\"Dâng vật phẩm tế lễ cho khúc gỗ nổi bật, góc vuông chuẩn xác sẽ mở lối đi\""},
+            {"Length: Short", "Độ dài: Ngắn"},
+            {"Length: Medium", "Độ dài: Trung bình"},
+            {"Length: Long", "Độ dài: Dài"},
+            {"Difficulty: Easy", "Độ khó: Dễ"},
+            {"Difficulty: Medium", "Độ khó: Trung bình"},
+            {"Difficulty: Hard", "Độ khó: Khó"},
+            {"Click To Track", "Nhấp Để Theo Dõi"},
+            {"Click to track", "Nhấp để theo dõi"},
+            {"Click to view on map", "Nhấp để xem trên bản đồ"},
+            {"Click to open on the wiki", "Nhấp để mở trên wiki"},
             {"Mana Regen", "Hồi Phục Năng Lượng"},
             {"Mana Steal", "Hút Năng Lượng"},
             {"Life Steal", "Hút Sinh Lực"},
@@ -74,8 +87,9 @@ public class TranslationEngine {
             {"Thorns", "Gai Phản Đòn"},
             {"Exploding", "Nổ Lan Khi Tiêu Diệt"},
             {"Poison", "Độc Tố"},
-            {"Combat Level", "Cấp Chiến Đấu"},
             {"Combat Lv. Min:", "Cấp Chiến Đấu Tối Thiểu:"},
+            {"Combat Level Min:", "Cấp Chiến Đấu Tối Thiểu:"},
+            {"Combat Level", "Cấp Chiến Đấu"},
             {"Class Type", "Yêu Cầu Hệ Phái"},
             {"Intelligence", "Trí Lực"},
             {"Strength", "Sức Mạnh"},
@@ -90,6 +104,7 @@ public class TranslationEngine {
             {"Very Slow", "Rất Chậm"},
             {"Super Slow", "Cực Chậm"},
             {"hits/s", "đòn/giây"},
+            {"Yellow Crystal", "Pha Lê Vàng (Yellow Crystal)"},
             {"DPS", "DPS"}
     };
 
@@ -231,7 +246,7 @@ public class TranslationEngine {
         }
 
         String translated = translateManual(textStr);
-        if (translated != null) {
+        if (translated != null && !translated.equalsIgnoreCase(textStr)) {
             MutableText result = Text.literal(WynnTextFormatter.preserveFormatting(textStr, translated));
             if (original.getStyle() != null) {
                 result.setStyle(original.getStyle());
@@ -262,6 +277,58 @@ public class TranslationEngine {
     }
 
     /**
+     * Translates Item Tooltip line in-place cleanly without touching font matrices.
+     */
+    public Text translateTooltipLine(Text line) {
+        if (line == null) return null;
+        String raw = line.getString();
+        if (raw == null || raw.trim().isEmpty() || WynnFontShield.isPurePuaGlyphs(raw)) {
+            return line;
+        }
+
+        String clean = WynnTextFormatter.stripFormatting(raw).trim();
+
+        // 1. Direct dictionary match
+        String match = dictionaryManager.findTranslation(clean);
+        if (match != null && !match.equalsIgnoreCase(clean)) {
+            MutableText res = Text.literal(WynnTextFormatter.preserveFormatting(raw, match));
+            if (line.getStyle() != null) res.setStyle(line.getStyle());
+            return res;
+        }
+
+        // 2. Normalized quotes match
+        String normalized = clean.replace('“', '"').replace('”', '"').replace('‘', '\'').replace('’', '\'');
+        if (!normalized.equals(clean)) {
+            String matchQ = dictionaryManager.findTranslation(normalized);
+            if (matchQ != null && !matchQ.equalsIgnoreCase(clean)) {
+                MutableText res = Text.literal(WynnTextFormatter.preserveFormatting(raw, matchQ));
+                if (line.getStyle() != null) res.setStyle(line.getStyle());
+                return res;
+            }
+        }
+
+        // 3. In-line token replacement for stats and quest descriptions
+        String replaced = raw;
+        boolean changed = false;
+        for (Object[] pair : STAT_REPLACEMENTS) {
+            String eng = (String) pair[0];
+            String vie = (String) pair[1];
+            if (replaced.contains(eng)) {
+                replaced = replaced.replace(eng, vie);
+                changed = true;
+            }
+        }
+
+        if (changed) {
+            MutableText res = Text.literal(replaced);
+            if (line.getStyle() != null) res.setStyle(line.getStyle());
+            return res;
+        }
+
+        return line;
+    }
+
+    /**
      * Translates Item Tooltips in-place.
      */
     public List<Text> processItemTooltip(List<Text> originalTooltip) {
@@ -273,27 +340,8 @@ public class TranslationEngine {
 
         for (int i = 0; i < originalTooltip.size(); i++) {
             Text line = originalTooltip.get(i);
-            String rawLine = line.getString();
-            String clean = WynnTextFormatter.stripFormatting(rawLine).trim();
-
-            if (clean.isEmpty() || WynnFontShield.isPurePuaGlyphs(clean)) {
-                processed.add(line);
-                continue;
-            }
-
-            String translated = translateManual(clean);
-            boolean hasTranslation = (translated != null && !translated.equalsIgnoreCase(clean));
-
-            if (!hasTranslation) {
-                processed.add(line);
-                continue;
-            }
-
-            MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
-            if (line.getStyle() != null) {
-                translatedLine.setStyle(line.getStyle());
-            }
-            processed.add(translatedLine);
+            Text translated = translateTooltipLine(line);
+            processed.add(translated != null ? translated : line);
         }
 
         return processed;

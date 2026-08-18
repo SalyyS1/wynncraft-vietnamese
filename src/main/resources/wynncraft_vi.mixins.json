@@ -8,7 +8,6 @@
   "client": [
     "ChatHudMixin",
     "InGameHudMixin",
-    "TextRendererMixin",
     "ItemStackMixin",
     "ClientPlayNetworkHandlerMixin"
   ],
