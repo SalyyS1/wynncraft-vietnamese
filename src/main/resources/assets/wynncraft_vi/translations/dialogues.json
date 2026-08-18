@@ -1,23 +1,36 @@
 {
   "exact": {
-    "Welcome to Wynncraft!": "Chào mừng đến với Wynncraft!",
+    "Welcome to Wynncraft!": "Chào mừng ngươi bước chân vào thế giới huyền thoại Wynncraft!",
     "Welcome to Ragni!": "Chào mừng đến với Thành Cổ Ragni!",
     "Welcome to Detlas!": "Chào mừng đến với Đại Đô Thị Detlas!",
-    "Welcome to Almuj!": "Chào mừng đến với Ốc Đảo Almuj!",
-    "Welcome to Troms!": "Chào mừng đến với Pháo Đài Troms!",
-    "Welcome to Llevigar!": "Chào mừng đến với Cảng Llevigar!",
-    "Welcome to Cinfras!": "Chào mừng đến với Kinh Đô Cinfras!",
+    "Welcome to Almuj!": "Chào mừng đến với Ốc Đảo Sa Mạc Almuj!",
+    "Welcome to Troms!": "Chào mừng đến với Pháo Đài Rừng Troms!",
+    "Welcome to Llevigar!": "Chào mừng đến với Thành Phố Cảng Llevigar!",
+    "Welcome to Cinfras!": "Chào mừng đến với Kinh Đô Hoàng Gia Cinfras!",
     "Welcome to Ahmsord!": "Chào mừng đến với Thành Phố Trên Mây Ahmsord!",
-    "Welcome to Lutho!": "Chào mừng đến với Vùng Đất Lutho!",
-    "Safe Zone": "Khu Vực An Toàn",
-    "Combat Zone": "Khu Vực Chiến Đấu",
-    "Server restarting in 5 minutes!": "Máy chủ sẽ khởi động lại sau 5 phút!",
-    "Server restarting in 1 minute!": "Máy chủ sẽ khởi động lại sau 1 phút!",
-    "You died!": "Ngươi đã hy sinh!",
-    "Respawning at nearest town...": "Đang hồi sinh tại thị trấn gần nhất..."
+    "Welcome to Lutho!": "Chào mừng đến với Vùng Đất Tĩnh Lặng Lutho!",
+    "Safe Zone": "Khu Vực An Toàn (Không Giao Tranh)",
+    "Combat Zone": "Khu Vực Chiến Đấu Nguy Hiểm!",
+    "Server restarting in 5 minutes!": "Máy chủ sẽ bảo trì khởi động lại sau 5 phút nữa!",
+    "Server restarting in 1 minute!": "Máy chủ sẽ bảo trì khởi động lại sau 1 phút nữa!",
+    "You died!": "Ngươi đã gục ngã trên chiến trường!",
+    "Respawning at nearest town...": "Đang hồi sinh linh hồn tại thị trấn gần nhất...",
+    "Hello recruit! Welcome to the province of Wynn.": "Chào mừng tân binh! Chào mừng ngươi đến với Đại lục Wynn.",
+    "The King has requested your presence in the throne room.": "Đức Vua đang triệu kiến ngươi tại ngai vàng đại điện.",
+    "Head up the stairs and speak with King of Ragni.": "Hãy bước lên cầu thang và diện kiến Đức Vua của Ragni.",
+    "Ah, another recruit from the province of Fruma!": "A, lại một chiến binh dũng cảm đến từ đế chế Fruma!",
+    "Take this weapon, you will need it outside the castle walls.": "Hãy cầm lấy vũ khí này, ngươi sẽ cần đến nó khi bước qua cổng thành.",
+    "The road ahead is full of dangerous creatures corrupted by dark magic.": "Con đường phía trước đầy rẫy quái thú bị ma thuật hắc ám tha hóa.",
+    "Be careful on your journey, soldier!": "Hãy bảo trọng trên chặng đường phía trước, hỡi chiến binh!",
+    "Have you seen my brother Therck? He went into the wilderness and hasn't returned.": "Ngươi có thấy anh trai Therck của ta đâu không? Anh ấy đi vào vùng hoang dã mà mãi chưa về.",
+    "Please search along the road to Detlas and bring him back!": "Xin hãy tìm dọc con đường dẫn đến Detlas và đưa anh ấy trở về an toàn!",
+    "Thank you so much for finding my brother! Take these emeralds as a reward.": "Đa tạ ngươi đã cứu anh trai ta! Xin hãy nhận những viên Lục Bảo này làm phần thưởng.",
+    "I need some ingredients to prepare the royal banquet for the King.": "Ta đang cần gấp nguyên liệu để chuẩn bị yến tiệc hoàng gia cho Đức Vua.",
+    "Can you bring me some grain and fresh milk from the farmland?": "Ngươi có thể lấy giúp ta ít lúa mì và sữa tươi từ nông trang không?",
+    "The banquet is saved! You have my deepest gratitude, traveler.": "Yến tiệc đã được cứu nguy! Ta vô cùng cảm kích trước sự giúp đỡ của ngươi, hỡi lữ khách."
   },
   "regex": {
-    "Territory (.+) was captured by (.+)": "Lãnh địa  đã bị chiếm bởi ",
-    "Guild war for (.+) starting in (.+)": "Chiến tranh bang hội tại  sẽ bắt đầu sau "
+    "Territory (.+) was captured by (.+)": "Lãnh địa $1 đã bị chiếm bởi bang hội $2!",
+    "Guild war for (.+) starting in (.+)": "Đại chiến bang hội tại $1 sẽ bắt đầu sau $2"
   }
 }
