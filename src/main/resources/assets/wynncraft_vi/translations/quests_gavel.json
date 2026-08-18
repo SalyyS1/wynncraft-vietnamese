@@ -1,0 +1,28 @@
+{
+  "exact": {
+    "Welcome to the Province of Gavel, traveler from across the sea!": "Chào mừng ngươi đến với Đại Lục Gavel, hỡi lữ khách vượt đại dương!",
+    "Show your passport to the Immigration Officer to gain entry into the city.": "Hãy xuất trình hộ chiếu cho Quan Chức Nhập Cảnh để được phép vào thành phố.",
+    "Gavel is a land governed by magic, ancient elven dynasties, and dwarf clans.": "Gavel là vùng đất được cai trị bởi ma thuật, các vương triều Tiên tộc và thị tộc Người Lùn.",
+    "Be on your guard; the politics here are as intricate as the spells cast.": "Hãy luôn cảnh giác; chính trường nơi đây phức tạp không kém gì những câu thần chú ma thuật.",
+    "The Realm of Light is crying out in pain!": "Vương Quốc Ánh Sáng đang kêu gào trong đau đớn!",
+    "A grotesque parasite from the Realm of Dern has attached itself to the sacred tree.": "Một ký sinh trùng gớm ghiếc từ Cõi Hư Không Dern đã bám vào Cây Thần Ánh Sáng.",
+    "Orphion, the celestial guardian beast of Light, is being drained of his divine energy.": "Orphion, Thần Thú Giám Hộ Ánh Sáng trên trời cao, đang bị hút cạn thần lực.",
+    "The corruption here is not mere rot—it is an anti-light entity that consumes existence.": "Sự tha hóa nơi đây không chỉ là mục rữa—nó là thực thể phản ánh sáng nuốt chửng sự tồn tại.",
+    "We must cleanse the five corrupted Light Pillars across the enchanted forest.": "Chúng ta phải thanh tẩy năm Trụ Cột Ánh Sáng bị tha hóa khắp khu rừng ma thuật.",
+    "Stand within the radiant circle and channel your pure willpower against the darkness!": "Hãy đứng vào vòng tròn hào quang và tập trung ý chí thuần khiết để đẩy lùi bóng tối!",
+    "You have broken the parasite's hold on the nexus! Orphion breathes once more!": "Ngươi đã phá vỡ sự kìm kẹp của ký sinh trùng! Thần Thú Orphion đã có thể thở lại!",
+    "The mountain city of Rodoroc was built on the sweat and blood of dwarven smiths.": "Thành phố núi lửa Rodoroc được dựng xây từ mồ hôi và xương máu của những thợ rèn Người Lùn.",
+    "For centuries, we believed the Doguns were mindless savage lava dragons.": "Suốt hàng thế kỷ, chúng ta từng tin rằng tộc Rồng Đất Dogun là những sinh vật dung nham man rợ vô tri.",
+    "A forgotten peace treaty lies hidden in the deepest lava chasm.": "Một hiệp ước hòa bình bị lãng quên đang nằm ẩn sâu dưới khe nứt dung nham tăm tối nhất.",
+    "General Axel lied to our people to seize the Doguns' ancient thermal cores.": "Đại Tướng Axel đã lừa dối nhân dân để chiếm đoạt các Lõi Nhiệt Cổ Đại của tộc Dogun.",
+    "Help us uncover the truth and forge a lasting alliance between Dwarf and Dogun!": "Hãy giúp chúng tôi phơi bày sự thật và kiến tạo liên minh vĩnh cửu giữa Người Lùn và tộc Dogun!",
+    "Halt! No outsider is permitted to enter the sacred Aldorei Valley without royal sanction.": "Dừng lại! Không kẻ ngoại tộc nào được phép bước vào Thung Lũng Aldorei linh thiêng mà không có thánh chỉ.",
+    "Our Elven High Council guards the primordial secrets of the World Tree.": "Hội Đồng Trưởng Lão Tiên Tộc của chúng ta canh giữ những bí mật nguyên thủy của Cây Thế Giới.",
+    "A splinter faction has stolen the Sun Tear Gem to unlock forbidden temporal magic.": "Một phe phái phản nghịch đã đánh cắp Viên Ngọc Lệ Mặt Trời để mở khóa ma thuật thời gian cấm kỵ.",
+    "If the temporal seal ruptures, the entire valley will be trapped in an endless loop of decay.": "Nếu phong ấn thời gian bị rách, toàn bộ thung lũng sẽ bị giam cầm trong vòng lặp hủy diệt vĩnh viễn.",
+    "Infiltrate the high sanctum and reclaim the Sun Tear before the eclipse begins!": "Hãy xâm nhập vào thánh điện tối cao và đoạt lại Ngọc Lệ Mặt Trời trước khi nhật thực bắt đầu!"
+  },
+  "regex": {
+    "(\\[NPC\\]\\s*)([A-Za-z0-9\\s_]+):\\s*(.+)": "$1$2: $3"
+  }
+}

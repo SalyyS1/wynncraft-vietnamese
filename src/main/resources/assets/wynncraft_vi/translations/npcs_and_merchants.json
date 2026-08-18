@@ -1,0 +1,25 @@
+{
+  "exact": {
+    "Welcome to my forge! What scrap of metal can I repair or scrap for you today?": "Chào mừng đến với xưởng rèn của ta! Ngươi muốn sửa chữa hay rã món đồ kim loại nào hôm nay?",
+    "That blade has seen better days. Let me hammer the dents out for a few emeralds.": "Lưỡi kiếm đó đã trải qua nhiều trận chiến rồi đấy. Để ta gõ lại những chỗ mẻ chỉ với vài viên Lục Bảo.",
+    "I can salvage raw crafting materials from your unwanted gear.": "Ta có thể thu hồi nguyên liệu chế tạo từ những trang bị thừa mà ngươi không dùng đến.",
+    "Greetings, adventurer! Bring me your unidentified relics and let us reveal their true power!": "Kính chào mạo hiểm giả! Hãy mang những cổ vật chưa thẩm định đến đây để ta khai mở sức mạnh thực sự của chúng!",
+    "Ah, the runes on this item are ancient... let us see what blessings or curses lie within!": "A, những cổ tự trên món đồ này thật cổ xưa... hãy xem những ân huệ hay lời nguyền nào ẩn chứa bên trong!",
+    "A marvelous piece of craftsmanship! Truly a rare discovery!": "Một kiệt tác chế tác phi thường! Quả thực là một khám phá vô cùng quý hiếm!",
+    "Welcome to the Royal Bank of Wynn. Your treasures are guarded under lock and key.": "Chào mừng đến với Ngân Hàng Hoàng Gia Wynn. Kho báu của quý khách luôn được bảo vệ an toàn tuyệt đối.",
+    "Would you like to access your personal vault or manage your emerald pouch?": "Quý khách muốn mở hòm đồ cá nhân hay quản lý túi đựng Ngọc Lục Bảo?",
+    "We offer extra vault pages for adventurers with overflowing loot bags.": "Chúng tôi cung cấp thêm các trang kho mở rộng cho những mạo hiểm giả mang nhiều chiến lợi phẩm.",
+    "Step right up to the Global Trade Market! Buy low, sell high, and make your fortune!": "Bước vào Sàn Giao Dịch Thế Giới nào! Mua rẻ, bán đắt và làm giàu từ những chuyến buôn!",
+    "Browse listings from players across all realms or post your own sell orders.": "Xem các mặt hàng từ người chơi khắp các cõi hoặc tự đăng bán vật phẩm của riêng bạn.",
+    "Your trade order has been successfully fulfilled! Collect your emeralds at the market counter.": "Giao dịch của bạn đã hoàn tất thành công! Hãy nhận Lục Bảo tại quầy thu ngân của chợ.",
+    "Looking for a sturdy steed to carry you across the vast plains?": "Ngươi đang tìm một chú chiến mã dũng mãnh để đồng hành qua những thảo nguyên bao la ư?",
+    "Breed two horses together at the stable to raise a swifter, higher-tier steed!": "Hãy phối giống hai con ngựa tại chuồng để lai tạo ra chú ngựa có tốc độ và cấp bậc cao hơn!",
+    "The legendary White Horse is unmatched in speed, jumping prowess, and stamina.": "Bạch Mã Huyền Thoại là chú ngựa vô song về tốc độ, sức bật nhảy và thể lực dẻo dai.",
+    "Powders embody the pure essence of Earth, Thunder, Water, Fire, and Air!": "Bột nguyên tố kết tinh tinh hoa thuần khiết của Địa, Lôi, Thủy, Hỏa và Phong!",
+    "Infuse powders into weapons to deal devastating elemental damage and trigger special abilities!": "Khảm bột vào vũ khí để gây sát thương nguyên tố khủng khiếp và kích hoạt các kỹ năng đặc biệt!",
+    "Combine lower tier powders together to forge powerful Tier VI elemental gems!": "Hợp nhất các loại bột cấp thấp để tôi luyện thành những viên Ngọc Nguyên Tố Cấp VI hùng mạnh!"
+  },
+  "regex": {
+    "(\\[NPC\\]\\s*)([A-Za-z0-9\\s_]+):\\s*(.+)": "$1$2: $3"
+  }
+}

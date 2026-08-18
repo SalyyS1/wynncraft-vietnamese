@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.net.URI;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
@@ -40,13 +38,17 @@ public class DictionaryManager {
         exactDictionary.clear();
         regexDictionary.clear();
 
-        // 1. Load bundled manual translation files
+        // 1. Load all bundled manual translation files
         String[] bundled = {
                 "/assets/wynncraft_vi/translations/general.json",
                 "/assets/wynncraft_vi/translations/items.json",
                 "/assets/wynncraft_vi/translations/quests.json",
                 "/assets/wynncraft_vi/translations/dialogues.json",
-                "/assets/wynncraft_vi/translations/regions.json"
+                "/assets/wynncraft_vi/translations/regions.json",
+                "/assets/wynncraft_vi/translations/quests_wynn.json",
+                "/assets/wynncraft_vi/translations/quests_gavel.json",
+                "/assets/wynncraft_vi/translations/quests_corkus_endgame.json",
+                "/assets/wynncraft_vi/translations/npcs_and_merchants.json"
         };
 
         for (String res : bundled) {

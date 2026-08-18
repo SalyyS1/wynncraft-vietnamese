@@ -1,0 +1,17 @@
+{
+  "exact": {
+    "Welcome to the Industrial Empire of Corkus!": "Chào mừng đến với Đế Chế Công Nghiệp Cơ Giới Corkus!",
+    "Where gears turn, steam powers our lives, and electrum flows through every wire.": "Nơi những bánh răng quay đều, hơi nước vận hành cuộc sống và dòng điện luân chuyển qua từng vi mạch.",
+    "The Mechs in the Factory have developed anomalous autonomous programming.": "Những cỗ máy Robot trong Nhà Máy đã phát triển lập trình tự trị bất thường.",
+    "Factory Chief Antikythera is seeking skilled engineers and fighters to investigate.": "Giám Đốc Nhà Máy Antikythera đang tìm kiếm các kỹ sư và chiến binh tài ba để điều tra.",
+    "Watch out for defective shock turrets and overheating plasma conduits!": "Hãy coi chừng các trụ pháo xung điện bị lỗi và đường ống dẫn năng lượng plasma quá nhiệt!",
+    "Beyond the gate of Lutho lies the Silent Expanse—where reality itself begins to unravel.": "Phía sau cánh cổng Lutho là Hoang Mạc Tĩnh Lặng—nơi chính thực tại bắt đầu bị xé toạc.",
+    "No expedition has ever returned with their sanity intact.": "Chưa từng có đoàn thám hiểm nào trở về mà còn giữ được sự tỉnh táo.",
+    "The eyes in the darkness do not blink; they watch your soul from between the cracks of space.": "Những con mắt trong bóng đêm không bao giờ chớp; chúng dõi theo linh hồn ngươi từ khe nứt không gian.",
+    "The Nameless Anomaly is warping gravity, time, and memories within the epicenter.": "Dị Tượng Vô Danh đang bóp méo trọng lực, thời gian và ký ức tại tâm điểm hoang mạc.",
+    "To face the darkness of Dern, you must arm yourself with unwavering resolve and pure void-shielding.": "Để đối mặt với bóng tối cõi Dern, ngươi phải trang bị cho mình ý chí bất khuất và khiên chắn hư không thuần khiết."
+  },
+  "regex": {
+    "(\\[NPC\\]\\s*)([A-Za-z0-9\\s_]+):\\s*(.+)": "$1$2: $3"
+  }
+}
