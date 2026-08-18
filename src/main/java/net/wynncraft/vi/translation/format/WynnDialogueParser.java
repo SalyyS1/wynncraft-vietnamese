@@ -60,6 +60,19 @@ public class WynnDialogueParser {
             return new ParsedDialogue(true, optionNumber, body);
         }
 
+        // Generic Named NPC Dialogue (e.g. "Enzan: Hello!", "Dr. Picard: Look here", "King of Ragni: Welcome")
+        int colonIdx = clean.indexOf(':');
+        if (colonIdx > 0 && colonIdx < 35) {
+            String speaker = clean.substring(0, colonIdx).trim();
+            if (!speaker.contains("http") && !speaker.contains("/") && speaker.matches("^[A-Z][a-zA-Z0-9' ._-]{1,30}$")) {
+                String prefix = clean.substring(0, colonIdx + 1) + " ";
+                String body = clean.substring(colonIdx + 1).trim();
+                if (!body.isEmpty()) {
+                    return new ParsedDialogue(true, prefix, body);
+                }
+            }
+        }
+
         return new ParsedDialogue(false, "", rawText);
     }
 }

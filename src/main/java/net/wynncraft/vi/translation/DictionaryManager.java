@@ -52,7 +52,9 @@ public class DictionaryManager {
                 "/assets/wynncraft_vi/translations/consumables.json",
                 "/assets/wynncraft_vi/translations/dungeons_and_combat.json",
                 "/assets/wynncraft_vi/translations/classes_and_abilities.json",
-                "/assets/wynncraft_vi/translations/professions.json"
+                "/assets/wynncraft_vi/translations/professions.json",
+                "/assets/wynncraft_vi/translations/secret_discoveries.json",
+                "/assets/wynncraft_vi/translations/mini_quests_and_world.json"
         };
 
         for (String res : bundled) {

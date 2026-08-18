@@ -1,0 +1,27 @@
+{
+  "exact": {
+    "Mini-Quest": "Nhiệm Vụ Phụ",
+    "World Event": "Sự Kiện Thế Giới",
+    "World Event Started!": "Sự Kiện Thế Giới Đã Bắt Đầu!",
+    "World Event Completed!": "Sự Kiện Thế Giới Đã Hoàn Thành!",
+    "Lootrun Challenge": "Thử Thách Lootrun",
+    "Lootrun Active": "Lootrun Đang Kích Hoạt",
+    "Lootrun Finished!": "Lootrun Đã Hoàn Thành!",
+    "Challenge Completed!": "Đã Hoàn Thành Thử Thách!",
+    "Cave Cleared!": "Đã Dọn Sạch Hang Động!",
+    "Defeat all enemies to open the reward chest!": "Tiêu diệt toàn bộ quái vật để mở rương phần thưởng!",
+    "Survive the ambush!": "Sống sót qua cuộc phục kích bất ngờ!",
+    "A powerful corrupted entity approaches!": "Một thực thể tha hóa hùng mạnh đang tiến đến gần!",
+    "Protect the caravan from bandits!": "Bảo vệ đoàn thương buôn khỏi bọn thổ phỉ!",
+    "Gather the falling star fragments!": "Thu thập các mảnh sao rơi trên chiến trường!",
+    "Purify the corrupted totems!": "Thanh tẩy các trụ tế lễ bị tha hóa!",
+    "Defend the civilian outpost!": "Bảo vệ tiền đồn dân thường!"
+  },
+  "regex": {
+    "Wave (\\d+)/(\\d+)": "Đợt quái $1/$2",
+    "Time Remaining: (\\d+)s": "Thời gian còn lại: $1 giây",
+    "Defeat (\\d+) more enemies": "Tiêu diệt thêm $1 kẻ địch nữa",
+    "Lootrun Beacon: (.+)": "Cột Mốc Lootrun: $1",
+    "Rerolls Remaining: (\\d+)": "Lượt quay lại còn lại: $1"
+  }
+}
