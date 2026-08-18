@@ -25,12 +25,37 @@
     "Have you seen my brother Therck? He went into the wilderness and hasn't returned.": "Ngươi có thấy anh trai Therck của ta đâu không? Anh ấy đi vào vùng hoang dã mà mãi chưa về.",
     "Please search along the road to Detlas and bring him back!": "Xin hãy tìm dọc con đường dẫn đến Detlas và đưa anh ấy trở về an toàn!",
     "Thank you so much for finding my brother! Take these emeralds as a reward.": "Đa tạ ngươi đã cứu anh trai ta! Xin hãy nhận những viên Lục Bảo này làm phần thưởng.",
+    "Help! I was attacked by wolves while looking for mushrooms.": "Cứu ta với! Ta vừa bị bầy sói dữ tấn công khi đang hái nấm dại.",
+    "Take this mushroom back to Enzan so he knows I am safe.": "Hãy mang cây nấm này về cho Enzan để em ấy biết ta vẫn bình an vô sự.",
     "I need some ingredients to prepare the royal banquet for the King.": "Ta đang cần gấp nguyên liệu để chuẩn bị yến tiệc hoàng gia cho Đức Vua.",
     "Can you bring me some grain and fresh milk from the farmland?": "Ngươi có thể lấy giúp ta ít lúa mì và sữa tươi từ nông trang không?",
-    "The banquet is saved! You have my deepest gratitude, traveler.": "Yến tiệc đã được cứu nguy! Ta vô cùng cảm kích trước sự giúp đỡ của ngươi, hỡi lữ khách."
+    "The banquet is saved! You have my deepest gratitude, traveler.": "Yến tiệc đã được cứu nguy! Ta vô cùng cảm kích trước sự giúp đỡ của ngươi, hỡi lữ khách.",
+    "The corruption is spreading through the roots of the forest.": "Thế lực tha hóa đang lan truyền qua từng rễ cây cổ thụ trong khu rừng.",
+    "Strange parasite weeds are strangling the trees in Nivla Woods.": "Những loài cỏ ký sinh kỳ dị đang siết chết cây cối trong Rừng Nivla.",
+    "Use your weapon to clear out the infested weeds and restore peace.": "Hãy dùng vũ khí chém sạch đám cỏ đột biến để trả lại sự bình yên cho khu rừng.",
+    "Something is poisoning the water supply from the ancient well.": "Có thứ gì đó tà ác đang đầu độc nguồn nước từ chiếc giếng cổ.",
+    "I heard eerie whispers coming from the depths of the well at midnight.": "Ta nghe thấy những tiếng thì thầm rùng rợn vọng lên từ đáy giếng lúc nửa đêm.",
+    "Descend into the well and eradicate whatever is corrupting the water.": "Hãy trèo xuống đáy giếng và tiêu diệt bất cứ thứ gì đang làm ô nhiễm nguồn nước.",
+    "The spiders in the ravine are growing larger and more aggressive by the day.": "Lũ nhện độc trong khe núi ngày càng to lớn và hung tợn hơn mỗi ngày.",
+    "Their silk is strong enough to trap fully armored soldiers.": "Tơ của chúng dai đến mức có thể trói chặt cả những binh sĩ mặc giáp nặng.",
+    "Venture into the heart of the nest and destroy the Broodmother!": "Hãy tiến thẳng vào hang ổ và tiêu diệt Nhện Chúa!",
+    "Graves have been desecrated across the cemetery of Nemract.": "Nhiều ngôi mộ khắp nghĩa trang Nemract đã bị đào bới một cách bí ẩn.",
+    "The undead are rising from their eternal slumber, hungry for souls.": "Lũ xác sống đang thức giấc từ giấc ngủ ngàn thu, khao khát nuốt chửng linh hồn.",
+    "Investigate the mausoleum and put an end to the grave robber's ritual.": "Hãy điều tra lăng mộ cổ và chấm dứt nghi lễ tà đạo của tên trộm mộ.",
+    "The WynnExcavation Company is unearthing secrets that were meant to stay buried.": "Tập đoàn Khai Quật Wynn đang đào bới những bí mật lẽ ra nên được chôn vùi vĩnh viễn.",
+    "The crystal shards contain immense power, but also a dreadful curse.": "Những mảnh pha lê cổ chứa đựng sức mạnh vô biên, nhưng cũng kèm theo lời nguyền khủng khiếp.",
+    "We need an adventurer capable of bypassing the ancient guardian traps.": "Chúng ta cần một mạo hiểm giả tài ba có thể vô hiệu hóa cạm bẫy của những Hộ Vệ Cổ Đại.",
+    "Retrieve the crystal artifact before it falls into the hands of the Corrupter!": "Hãy đoạt lại cổ vật pha lê trước khi nó rơi vào tay Chúa Tể Tha Hóa!",
+    "Only those who have mastered all four elements may enter the sacred temple.": "Chỉ những ai đã lĩnh hội tinh hoa của tứ đại nguyên tố mới được phép bước vào thánh điện.",
+    "The spirits of past legends await to test your resolve and strength.": "Linh hồn của các bậc tiền nhân huyền thoại đang chờ đợi để thử thách ý chí và thực lực của ngươi.",
+    "Prove your worth and claim the blessing of the ancient champions!": "Hãy chứng minh bản lĩnh và nhận lấy lời chúc phúc từ các bậc anh hùng vĩ đại!",
+    "The Light is fading, and Orphion's power grows weaker with each passing day.": "Ánh Sáng đang lụi tàn, và thần lực của Thần Thú Orphion ngày một suy kiệt.",
+    "The Parasite from the Realm of Dern is corrupting the sacred nexus.": "Ký sinh trùng đến từ Cõi Hư Không Dern đang làm vấy bẩn tâm điểm thần thánh.",
+    "You are the champion chosen to restore equilibrium to the world of Gavel.": "Ngươi là dũng sĩ được chọn để khôi phục lại thế cân bằng cho toàn cõi Gavel."
   },
   "regex": {
     "Territory (.+) was captured by (.+)": "Lãnh địa $1 đã bị chiếm bởi bang hội $2!",
-    "Guild war for (.+) starting in (.+)": "Đại chiến bang hội tại $1 sẽ bắt đầu sau $2"
+    "Guild war for (.+) starting in (.+)": "Đại chiến bang hội tại $1 sẽ bắt đầu sau $2",
+    "(\\[NPC\\]\\s*)([A-Za-z0-9\\s_]+):\\s*(.+)": "$1$2: $3"
   }
 }
