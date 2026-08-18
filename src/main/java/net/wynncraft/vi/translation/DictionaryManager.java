@@ -50,7 +50,9 @@ public class DictionaryManager {
                 "/assets/wynncraft_vi/translations/quests_corkus_endgame.json",
                 "/assets/wynncraft_vi/translations/npcs_and_merchants.json",
                 "/assets/wynncraft_vi/translations/consumables.json",
-                "/assets/wynncraft_vi/translations/dungeons_and_combat.json"
+                "/assets/wynncraft_vi/translations/dungeons_and_combat.json",
+                "/assets/wynncraft_vi/translations/classes_and_abilities.json",
+                "/assets/wynncraft_vi/translations/professions.json"
         };
 
         for (String res : bundled) {

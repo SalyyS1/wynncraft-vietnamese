@@ -1,15 +1,12 @@
 {
   "exact": {
-    "Welcome to the Industrial Empire of Corkus!": "Chào mừng đến với Đế Chế Công Nghiệp Cơ Giới Corkus!",
-    "Where gears turn, steam powers our lives, and electrum flows through every wire.": "Nơi những bánh răng quay đều, hơi nước vận hành cuộc sống và dòng điện luân chuyển qua từng vi mạch.",
-    "The Mechs in the Factory have developed anomalous autonomous programming.": "Những cỗ máy Robot trong Nhà Máy đã phát triển lập trình tự trị bất thường.",
-    "Factory Chief Antikythera is seeking skilled engineers and fighters to investigate.": "Giám Đốc Nhà Máy Antikythera đang tìm kiếm các kỹ sư và chiến binh tài ba để điều tra.",
-    "Watch out for defective shock turrets and overheating plasma conduits!": "Hãy coi chừng các trụ pháo xung điện bị lỗi và đường ống dẫn năng lượng plasma quá nhiệt!",
-    "Beyond the gate of Lutho lies the Silent Expanse—where reality itself begins to unravel.": "Phía sau cánh cổng Lutho là Hoang Mạc Tĩnh Lặng—nơi chính thực tại bắt đầu bị xé toạc.",
-    "No expedition has ever returned with their sanity intact.": "Chưa từng có đoàn thám hiểm nào trở về mà còn giữ được sự tỉnh táo.",
-    "The eyes in the darkness do not blink; they watch your soul from between the cracks of space.": "Những con mắt trong bóng đêm không bao giờ chớp; chúng dõi theo linh hồn ngươi từ khe nứt không gian.",
-    "The Nameless Anomaly is warping gravity, time, and memories within the epicenter.": "Dị Tượng Vô Danh đang bóp méo trọng lực, thời gian và ký ức tại tâm điểm hoang mạc.",
-    "To face the darkness of Dern, you must arm yourself with unwavering resolve and pure void-shielding.": "Để đối mặt với bóng tối cõi Dern, ngươi phải trang bị cho mình ý chí bất khuất và khiên chắn hư không thuần khiết."
+    "Take my life, friend. It's the only way through. Finish what we started...": "Hãy lấy mạng tôi đi, người bạn của tôi. Đó là cách duy nhất để mở phong ấn. Hãy hoàn thành những gì chúng ta đã cùng nhau bắt đầu...",
+    "The Eye Watches. You have seen loss. Destruction. Betrayal. All ends, to some other than you... Here you will gain the power to bring an end. To be brought yours.": "Con Mắt Luôn Dõi Theo. Ngươi đã chứng kiến mất mát. Hủy diệt. Phản bội. Mọi thứ rồi sẽ kết thúc, với tất cả ngoại trừ ngươi... Tại đây ngươi sẽ nhận lấy quyền năng để đặt dấu chấm hết. Hoặc chính ngươi sẽ bị kết liễu.",
+    "Many have made it this far. None have succeeded—not against me.": "Rất nhiều kẻ đã đi được tới tận đây. Nhưng chưa một ai thành công—nhất là khi đối đầu với ta.",
+    "Aha! So you can crack my defenses... then let me see what you are made of up close, Wynn warrior.": "Aha! Ngươi phá được phòng ngự của ta sao... vậy để ta xem ngươi được tôi luyện từ thứ gì khi cận chiến nhé, chiến binh Wynn.",
+    "Do not presume I am limited to merely one trick. My knowledge surpasses the barriers of reality itself.": "Đừng nghĩ rằng ta chỉ có một mánh khóe. Kiến thức của ta vượt qua mọi rào cản của chính thực tại.",
+    "There have been scarce few to push me to this point... I will not stop, however. You have not won yet, Wynn warrior!": "Rất hiếm kẻ có thể dồn ta tới bước đường này... Dù vậy ta sẽ không dừng lại. Ngươi vẫn chưa thắng đâu, chiến binh Wynn!",
+    "I must admit my pleasure seeing you last this long—It is a refreshing change of... pace... Well fought, champion.": "Ta phải thừa nhận sự thích thú khi thấy ngươi trụ được lâu đến thế—Một sự đổi gió thật... sảng khoái... Đấu tốt lắm, hỡi nhà vô địch."
   },
   "regex": {
     "(\\[NPC\\]\\s*)([A-Za-z0-9\\s_]+):\\s*(.+)": "$1$2: $3"
