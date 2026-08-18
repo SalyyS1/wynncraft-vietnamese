@@ -392,8 +392,6 @@
     "Enter the portal to (.+)": "Bước qua cánh cổng dịch chuyển đến $1",
     "Escort (.+) safely to (.+)": "Hộ tống $1 an toàn đến $2",
     "Find a way into (.+)": "Tìm đường tiến vào $1",
-    "Break through the (.+) at (.+)": "Phá hủy $1 tại $2",
-    "(.+)\\s*\\[Quest\\]": "$1 [Nhiệm Vụ]",
     "Combat Lv\\.\\s*Min:\\s*(\\d+)": "Cấp Chiến Đấu Tối Thiểu: $1",
     "Combat Level Min:\\s*(\\d+)": "Cấp Chiến Đấu Tối Thiểu: $1",
     "-\\s*\\+([0-9,]+)\\s*XP": "- +$1 XP",

@@ -24,6 +24,11 @@ public class ItemStackMixin {
         }
         Text original = cir.getReturnValue();
         if (original != null) {
+            String str = original.getString();
+            // Preserve Wynntils activity parser tags so Wynntils recognizes all quests
+            if (str.contains("[Quest]") || str.contains("[Mini-Quest]") || str.contains("[Discovery]") || str.contains("[World Event]")) {
+                return;
+            }
             Text translated = TranslationEngine.getInstance().translateTextComponent(original);
             if (translated != original) {
                 cir.setReturnValue(translated);
