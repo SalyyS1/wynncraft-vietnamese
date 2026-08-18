@@ -295,7 +295,30 @@
     "Echoes of Change": "Nhiệm Vụ: Echoes of Change",
     "Prison Story (1.14)": "Nhiệm Vụ: Prison Story (1.14)",
     "Purple and Blue": "Nhiệm Vụ: Purple and Blue",
-    "??? (1.14)": "Nhiệm Vụ: ??? (1.14)"
+    "??? (1.14)": "Nhiệm Vụ: ??? (1.14)",
+    "Storyline - Currently in progress": "Cốt truyện - Đang thực hiện",
+    "Currently in progress": "Đang thực hiện",
+    "Length: Short": "Độ dài: Ngắn",
+    "Length: Medium": "Độ dài: Trung bình",
+    "Length: Long": "Độ dài: Dài",
+    "Difficulty: Easy": "Độ khó: Dễ",
+    "Difficulty: Medium": "Độ khó: Trung bình",
+    "Difficulty: Hard": "Độ khó: Khó",
+    "Rewards:": "Phần thưởng:",
+    "Click To Track": "Nhấp Để Theo Dõi",
+    "Click to track": "Nhấp để theo dõi",
+    "Click to view on map": "Nhấp để xem trên bản đồ",
+    "Click to open on the wiki": "Nhấp để mở trên wiki",
+    "Filter and sort using the buttons at the top and select content to track": "Lọc và sắp xếp bằng các nút ở trên cùng và chọn nội dung cần theo dõi",
+    "Search...": "Tìm kiếm...",
+    "Wynntils Menu": "Menu Wynntils",
+    "Solve this riddle in the tomb:": "Giải câu đố sau trong lăng mộ:",
+    "Throw tribute an item to the wood that stands out, the right angle will open the way": "Dâng vật phẩm tế lễ cho khúc gỗ nổi bật, góc vuông chuẩn xác sẽ mở lối đi",
+    "\"Throw tribute an item to the wood that stands out, the right angle will open the way\"": "\"Dâng vật phẩm tế lễ cho khúc gỗ nổi bật, góc vuông chuẩn xác sẽ mở lối đi\"",
+    "- +1 Yellow Crystal": "- +1 Pha Lê Vàng (Yellow Crystal)",
+    "- +1 Purple Crystal": "- +1 Pha Lê Tím (Purple Crystal)",
+    "- +1 Red Crystal": "- +1 Pha Lê Đỏ (Red Crystal)",
+    "- +1 Blue Crystal": "- +1 Pha Lê Xanh (Blue Crystal)"
   },
   "regex": {
     "Quest Started:\\s*(.+)": "Bắt Đầu Nhiệm Vụ Mới: $1",
@@ -339,6 +362,11 @@
     "Enter the portal to (.+)": "Bước qua cánh cổng dịch chuyển đến $1",
     "Escort (.+) safely to (.+)": "Hộ tống $1 an toàn đến $2",
     "Find a way into (.+)": "Tìm đường tiến vào $1",
-    "Break through the (.+) at (.+)": "Phá hủy $1 tại $2"
+    "Break through the (.+) at (.+)": "Phá hủy $1 tại $2",
+    "(.+)\\s*\\[Quest\\]": "$1 [Nhiệm Vụ]",
+    "Combat Lv\\.\\s*Min:\\s*(\\d+)": "Cấp Chiến Đấu Tối Thiểu: $1",
+    "Combat Level Min:\\s*(\\d+)": "Cấp Chiến Đấu Tối Thiểu: $1",
+    "-\\s*\\+([0-9,]+)\\s*XP": "- +$1 XP",
+    "-\\s*\\+([0-9,]+)\\s*Emeralds": "- +$1 Lục Bảo"
   }
 }
