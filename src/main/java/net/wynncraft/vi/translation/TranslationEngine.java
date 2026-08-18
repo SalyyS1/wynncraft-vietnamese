@@ -6,35 +6,22 @@ import net.minecraft.text.Text;
 import net.wynncraft.vi.config.ConfigManager;
 import net.wynncraft.vi.config.ModConfig;
 import net.wynncraft.vi.translation.format.WynnDialogueParser;
+import net.wynncraft.vi.translation.format.WynnFontShield;
 import net.wynncraft.vi.translation.format.WynnTextFormatter;
-import net.wynncraft.vi.translation.provider.DeepLTranslateProvider;
-import net.wynncraft.vi.translation.provider.GoogleTranslateProvider;
-import net.wynncraft.vi.translation.provider.ITranslationProvider;
-import net.wynncraft.vi.translation.provider.OpenAITranslateProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TranslationEngine {
     private static final Logger LOGGER = LoggerFactory.getLogger("WynncraftVI-Engine");
     private static TranslationEngine INSTANCE;
 
     private final DictionaryManager dictionaryManager;
-    private final TranslationCache cache;
-    private final Map<ModConfig.TranslationProviderType, ITranslationProvider> providers;
-    private final Set<String> pendingTranslations = ConcurrentHashMap.newKeySet();
 
     private TranslationEngine() {
         this.dictionaryManager = new DictionaryManager();
-        this.cache = new TranslationCache();
-        this.providers = new EnumMap<>(ModConfig.TranslationProviderType.class);
-
-        providers.put(ModConfig.TranslationProviderType.GOOGLE, new GoogleTranslateProvider());
-        providers.put(ModConfig.TranslationProviderType.DEEPL, new DeepLTranslateProvider());
-        providers.put(ModConfig.TranslationProviderType.OPENAI, new OpenAITranslateProvider());
     }
 
     public static synchronized TranslationEngine getInstance() {
@@ -46,106 +33,47 @@ public class TranslationEngine {
 
     public void init() {
         dictionaryManager.init();
-        cache.load();
-        LOGGER.info("TranslationEngine initialized.");
+        LOGGER.info("Manual TranslationEngine initialized.");
     }
 
     public void shutdown() {
-        cache.save();
     }
 
     public DictionaryManager getDictionaryManager() {
         return dictionaryManager;
     }
 
-    public TranslationCache getCache() {
-        return cache;
-    }
-
-    public ITranslationProvider getCurrentProvider() {
-        ModConfig config = ConfigManager.getConfig();
-        return providers.getOrDefault(config.provider, providers.get(ModConfig.TranslationProviderType.GOOGLE));
-    }
-
-    public String translateSync(String rawText) {
+    /**
+     * Looks up manual translation for text. Returns null if not found in dictionary.
+     */
+    public String translateManual(String rawText) {
         if (!ConfigManager.getConfig().enabled || rawText == null || rawText.trim().isEmpty()) {
-            return rawText;
-        }
-
-        String clean = WynnTextFormatter.stripFormatting(rawText).trim();
-        if (clean.isEmpty()) {
-            return rawText;
-        }
-
-        // 1. Check Offline Dictionary
-        String dictMatch = dictionaryManager.findTranslation(clean);
-        if (dictMatch != null) {
-            return WynnTextFormatter.preserveFormatting(rawText, dictMatch);
-        }
-
-        // 2. Check Disk / Memory Cache
-        String cached = cache.get(clean);
-        if (cached != null) {
-            return WynnTextFormatter.preserveFormatting(rawText, cached);
-        }
-
-        // 3. Queue async online translation if enabled
-        if (ConfigManager.getConfig().onlineTranslationEnabled && !pendingTranslations.contains(clean)) {
-            requestAsyncTranslation(clean);
-        }
-
-        return rawText;
-    }
-
-    public CompletableFuture<String> translateAsync(String rawText) {
-        if (!ConfigManager.getConfig().enabled || rawText == null || rawText.trim().isEmpty()) {
-            return CompletableFuture.completedFuture(rawText);
-        }
-
-        String clean = WynnTextFormatter.stripFormatting(rawText).trim();
-        if (clean.isEmpty()) {
-            return CompletableFuture.completedFuture(rawText);
-        }
-
-        // 1. Check Dictionary
-        String dictMatch = dictionaryManager.findTranslation(clean);
-        if (dictMatch != null) {
-            return CompletableFuture.completedFuture(WynnTextFormatter.preserveFormatting(rawText, dictMatch));
-        }
-
-        // 2. Check Cache
-        String cached = cache.get(clean);
-        if (cached != null) {
-            return CompletableFuture.completedFuture(WynnTextFormatter.preserveFormatting(rawText, cached));
-        }
-
-        // 3. Request from Online Provider
-        if (ConfigManager.getConfig().onlineTranslationEnabled) {
-            return getCurrentProvider().translate(clean, "en", "vi").thenApply(translated -> {
-                if (translated != null && !translated.equalsIgnoreCase(clean)) {
-                    cache.put(clean, translated);
-                }
-                return WynnTextFormatter.preserveFormatting(rawText, translated != null ? translated : rawText);
-            });
-        }
-
-        return CompletableFuture.completedFuture(rawText);
-    }
-
-    private void requestAsyncTranslation(String cleanText) {
-        pendingTranslations.add(cleanText);
-        getCurrentProvider().translate(cleanText, "en", "vi").thenAccept(translated -> {
-            pendingTranslations.remove(cleanText);
-            if (translated != null && !translated.equalsIgnoreCase(cleanText)) {
-                cache.put(cleanText, translated);
-            }
-        }).exceptionally(ex -> {
-            pendingTranslations.remove(cleanText);
-            LOGGER.error("Async translation error for '{}': {}", cleanText, ex.getMessage());
             return null;
-        });
+        }
+
+        String clean = WynnTextFormatter.stripFormatting(rawText).trim();
+        if (clean.isEmpty()) {
+            return null;
+        }
+
+        // If string contains PUA font glyphs, try translating the non-glyph portion
+        if (WynnFontShield.containsPuaGlyphs(clean)) {
+            String nonPua = WynnFontShield.stripPuaGlyphs(clean).trim();
+            if (!nonPua.isEmpty()) {
+                String match = dictionaryManager.findTranslation(nonPua);
+                if (match != null) {
+                    return match;
+                }
+            }
+            return null;
+        }
+
+        return dictionaryManager.findTranslation(clean);
     }
 
+    /**
+     * Translates chat and NPC dialogues specifically, separating name tags and dialogue content.
+     */
     public Text translateDialogueOrChat(Text original) {
         if (!ConfigManager.getConfig().enabled || original == null) {
             return original;
@@ -155,14 +83,16 @@ public class TranslationEngine {
         WynnDialogueParser.ParsedDialogue parsed = WynnDialogueParser.parse(rawString);
 
         if (parsed.isDialogue && ConfigManager.getConfig().translateNpcDialogue) {
-            String translatedBody = translateSync(parsed.dialogueBody);
-            String fullTranslated = parsed.prefix + translatedBody;
-
-            MutableText result = Text.literal(fullTranslated);
-            if (original.getStyle() != null) {
-                result.setStyle(original.getStyle());
+            String translatedBody = translateManual(parsed.dialogueBody);
+            if (translatedBody != null) {
+                String fullTranslated = parsed.prefix + translatedBody;
+                MutableText result = Text.literal(fullTranslated);
+                if (original.getStyle() != null) {
+                    result.setStyle(original.getStyle());
+                }
+                return result;
             }
-            return result;
+            return original;
         }
 
         if (ConfigManager.getConfig().translateSystemChat) {
@@ -172,6 +102,9 @@ public class TranslationEngine {
         return original;
     }
 
+    /**
+     * Translates a Minecraft Text component if an exact manual translation exists.
+     */
     public Text translateTextComponent(Text original) {
         if (!ConfigManager.getConfig().enabled || original == null) {
             return original;
@@ -182,18 +115,22 @@ public class TranslationEngine {
             return original;
         }
 
-        String translated = translateSync(textStr);
-        if (translated.equals(textStr)) {
+        String translated = translateManual(textStr);
+        if (translated == null) {
             return original;
         }
 
-        MutableText result = Text.literal(translated);
+        MutableText result = Text.literal(WynnTextFormatter.preserveFormatting(textStr, translated));
         if (original.getStyle() != null) {
             result.setStyle(original.getStyle());
         }
         return result;
     }
 
+    /**
+     * Translates Item Tooltips according to configured ItemTooltipMode.
+     * Preserves custom font pack textures and icons.
+     */
     public List<Text> processItemTooltip(List<Text> originalTooltip) {
         if (!ConfigManager.getConfig().enabled || !ConfigManager.getConfig().translateItems || originalTooltip == null || originalTooltip.isEmpty()) {
             return originalTooltip;
@@ -216,31 +153,26 @@ public class TranslationEngine {
                 continue;
             }
 
-            String translated = translateSync(clean);
-            boolean hasTranslation = !translated.equalsIgnoreCase(clean);
+            String translated = translateManual(clean);
+            boolean hasTranslation = (translated != null && !translated.equalsIgnoreCase(clean));
+
+            if (!hasTranslation) {
+                processed.add(line);
+                continue;
+            }
 
             if (mode == ModConfig.ItemTooltipMode.REPLACE) {
-                if (hasTranslation) {
-                    MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
-                    translatedLine.setStyle(line.getStyle());
-                    processed.add(translatedLine);
-                } else {
-                    processed.add(line);
-                }
+                MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
+                translatedLine.setStyle(line.getStyle());
+                processed.add(translatedLine);
             } else if (mode == ModConfig.ItemTooltipMode.APPEND) {
                 processed.add(line);
-                if (hasTranslation) {
-                    MutableText viLine = Text.literal("§7↳ §e" + translated);
-                    processed.add(viLine);
-                }
+                MutableText viLine = Text.literal("§7↳ §e" + translated);
+                processed.add(viLine);
             } else if (mode == ModConfig.ItemTooltipMode.HOVER_OR_SHIFT) {
-                if (hasTranslation) {
-                    MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
-                    translatedLine.setStyle(line.getStyle());
-                    processed.add(translatedLine);
-                } else {
-                    processed.add(line);
-                }
+                MutableText translatedLine = Text.literal(WynnTextFormatter.preserveFormatting(line.getString(), translated));
+                translatedLine.setStyle(line.getStyle());
+                processed.add(translatedLine);
             }
         }
 

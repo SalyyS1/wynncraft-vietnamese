@@ -1,23 +1,23 @@
 {
   "exact": {
-    "Welcome to Wynncraft!": "Chào mừng ngươi bước chân vào Thế Giới Wynncraft!",
+    "Welcome to Wynncraft!": "Chào mừng đến với Wynncraft!",
     "Welcome to Ragni!": "Chào mừng đến với Thành Cổ Ragni!",
     "Welcome to Detlas!": "Chào mừng đến với Đại Đô Thị Detlas!",
-    "Welcome to Almuj!": "Chào mừng đến với Ốc Đảo Sa Mạc Almuj!",
-    "Welcome to Troms!": "Chào mừng đến với Pháo Đài Rừng Rậm Troms!",
-    "Welcome to Llevigar!": "Chào mừng đến với Thành Phố Cảng Llevigar!",
+    "Welcome to Almuj!": "Chào mừng đến với Ốc Đảo Almuj!",
+    "Welcome to Troms!": "Chào mừng đến với Pháo Đài Troms!",
+    "Welcome to Llevigar!": "Chào mừng đến với Cảng Llevigar!",
     "Welcome to Cinfras!": "Chào mừng đến với Kinh Đô Cinfras!",
     "Welcome to Ahmsord!": "Chào mừng đến với Thành Phố Trên Mây Ahmsord!",
-    "Welcome to Lutho!": "Chào mừng đến với Vùng Đất Tĩnh Lặng Lutho!",
-    "Safe Zone": "Khu Vực An Toàn (Không Thể Giao Tranh)",
-    "Combat Zone": "Khu Vực Chiến Đấu Nguy Hiểm!",
-    "Server restarting in 5 minutes!": "Máy chủ sẽ khởi động lại sau 5 phút nữa!",
-    "Server restarting in 1 minute!": "Máy chủ sẽ khởi động lại sau 1 phút nữa!",
-    "You died!": "Ngươi đã gục ngã trên chiến trường!",
-    "Respawning at nearest town...": "Đang hồi sinh linh hồn tại thị trấn gần nhất..."
+    "Welcome to Lutho!": "Chào mừng đến với Vùng Đất Lutho!",
+    "Safe Zone": "Khu Vực An Toàn",
+    "Combat Zone": "Khu Vực Chiến Đấu",
+    "Server restarting in 5 minutes!": "Máy chủ sẽ khởi động lại sau 5 phút!",
+    "Server restarting in 1 minute!": "Máy chủ sẽ khởi động lại sau 1 phút!",
+    "You died!": "Ngươi đã hy sinh!",
+    "Respawning at nearest town...": "Đang hồi sinh tại thị trấn gần nhất..."
   },
   "regex": {
-    "Territory (.+) was captured by (.+)": "Lãnh địa  đã bị bang hội  thâu tóm!",
-    "Guild war for (.+) starting in (.+)": "Đại chiến bang hội tại  sẽ bùng nổ sau "
+    "Territory (.+) was captured by (.+)": "Lãnh địa  đã bị chiếm bởi ",
+    "Guild war for (.+) starting in (.+)": "Chiến tranh bang hội tại  sẽ bắt đầu sau "
   }
 }

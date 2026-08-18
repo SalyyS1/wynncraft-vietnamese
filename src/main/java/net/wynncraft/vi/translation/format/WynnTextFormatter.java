@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class WynnTextFormatter {
     private static final Pattern FORMATTING_CODE_PATTERN = Pattern.compile("(?i)§[0-9A-FK-OR]");
     private static final Pattern LEADING_FORMATTING_PATTERN = Pattern.compile("^((?:§[0-9a-fk-or])+)(.*)$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PUA_PREFIX_PATTERN = Pattern.compile("^([\uE000-\uF8FF\\s§0-9a-fk-or]+)(.*)$");
 
     public static String stripFormatting(String input) {
         if (input == null) return null;

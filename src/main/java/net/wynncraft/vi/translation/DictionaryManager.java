@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -37,14 +39,22 @@ public class DictionaryManager {
         exactDictionary.clear();
         regexDictionary.clear();
 
-        loadBundledResource("/assets/wynncraft_vi/translations/terms.json");
-        loadBundledResource("/assets/wynncraft_vi/translations/items.json");
-        loadBundledResource("/assets/wynncraft_vi/translations/quests.json");
-        loadBundledResource("/assets/wynncraft_vi/translations/dialogues.json");
+        // 1. Load bundled manual translation files from resources
+        String[] bundled = {
+                "/assets/wynncraft_vi/translations/general.json",
+                "/assets/wynncraft_vi/translations/items.json",
+                "/assets/wynncraft_vi/translations/quests.json",
+                "/assets/wynncraft_vi/translations/dialogues.json"
+        };
 
-        loadUserDictionary();
+        for (String res : bundled) {
+            loadBundledResource(res);
+        }
 
-        LOGGER.info("Dictionary loaded: {} exact entries, {} regex patterns.",
+        // 2. Load custom user translation files from .minecraft/config/wynncraft_vi/translations/
+        loadUserTranslations();
+
+        LOGGER.info("Manual dictionary loaded: {} exact entries, {} regex patterns.",
                 exactDictionary.size(), regexDictionary.size());
     }
 
@@ -62,29 +72,34 @@ public class DictionaryManager {
         }
     }
 
-    private void loadUserDictionary() {
-        Path configDir = FabricLoader.getInstance().getConfigDir().resolve("wynncraft_vi");
-        File customFile = configDir.resolve("custom_dict.json").toFile();
+    private void loadUserTranslations() {
+        Path customDir = FabricLoader.getInstance().getConfigDir().resolve("wynncraft_vi").resolve("translations");
+        try {
+            if (!Files.exists(customDir)) {
+                Files.createDirectories(customDir);
+                createSampleCustomFile(customDir.resolve("custom_sample.json").toFile());
+                return;
+            }
 
-        if (!customFile.exists()) {
-            createSampleCustomDict(customFile);
-            return;
-        }
-
-        try (FileReader reader = new FileReader(customFile, StandardCharsets.UTF_8)) {
-            parseDictionaryJson(reader, "custom:" + customFile.getName());
+            try (DirectoryStream<Path> stream = Files.newDirectoryStream(customDir, "*.json")) {
+                for (Path entry : stream) {
+                    try (Reader reader = Files.newBufferedReader(entry, StandardCharsets.UTF_8)) {
+                        parseDictionaryJson(reader, "user:" + entry.getFileName());
+                    } catch (Exception e) {
+                        LOGGER.error("Failed to load custom dictionary {}: {}", entry.getFileName(), e.getMessage());
+                    }
+                }
+            }
         } catch (Exception e) {
-            LOGGER.error("Failed to load custom dictionary: {}", e.getMessage());
+            LOGGER.error("Error scanning user translations folder: {}", e.getMessage());
         }
     }
 
-    private void createSampleCustomDict(File file) {
+    private void createSampleCustomFile(File file) {
         try {
-            file.getParentFile().mkdirs();
             JsonObject sample = new JsonObject();
             JsonObject exact = new JsonObject();
-            exact.addProperty("Hello", "Xin chào");
-            exact.addProperty("Goodbye", "Tạm biệt");
+            exact.addProperty("Sample English Line", "Dòng tiếng Việt mẫu");
             sample.add("exact", exact);
 
             JsonObject regex = new JsonObject();
@@ -95,7 +110,7 @@ public class DictionaryManager {
                 new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(sample, writer);
             }
         } catch (Exception e) {
-            LOGGER.error("Failed to create sample custom dict: {}", e.getMessage());
+            LOGGER.error("Failed to create sample translation file: {}", e.getMessage());
         }
     }
 
@@ -125,7 +140,7 @@ public class DictionaryManager {
                         Pattern p = Pattern.compile(patternStr, Pattern.CASE_INSENSITIVE);
                         regexDictionary.add(new RegexEntry(p, replacement));
                     } catch (Exception e) {
-                        LOGGER.warn("Invalid regex pattern [{}] in {}: {}", patternStr, source, e.getMessage());
+                        LOGGER.warn("Invalid regex [{}] in {}: {}", patternStr, source, e.getMessage());
                     }
                 }
             }
@@ -140,17 +155,20 @@ public class DictionaryManager {
         }
         String clean = text.trim();
 
+        // 1. Direct match
         String match = exactDictionary.get(clean);
         if (match != null) {
             return match;
         }
 
+        // 2. Case-insensitive exact match
         for (Map.Entry<String, String> entry : exactDictionary.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(clean)) {
                 return entry.getValue();
             }
         }
 
+        // 3. Regex matching
         for (RegexEntry entry : regexDictionary) {
             Matcher m = entry.pattern.matcher(clean);
             if (m.matches()) {

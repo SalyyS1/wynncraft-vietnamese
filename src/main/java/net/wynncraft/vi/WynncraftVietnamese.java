@@ -67,7 +67,7 @@ public class WynncraftVietnamese implements ClientModInitializer {
                 KeyBindingHelper.registerKeyBinding(configKey);
             }
         } catch (Throwable t) {
-            LOGGER.warn("Keybinding registration error (commands /wynnvi are still active): {}", t.getMessage());
+            LOGGER.warn("Keybinding registration error: {}", t.getMessage());
         }
 
         // 4. Register Key Listeners
@@ -112,7 +112,7 @@ public class WynncraftVietnamese implements ClientModInitializer {
 
         // 7. Save on Stop
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-            LOGGER.info("Saving Wynncraft Vietnamese caches and configurations...");
+            LOGGER.info("Saving Wynncraft Vietnamese configurations...");
             TranslationEngine.getInstance().shutdown();
             ConfigManager.save();
         });
@@ -120,10 +120,6 @@ public class WynncraftVietnamese implements ClientModInitializer {
         LOGGER.info("Wynncraft Vietnamese Translation Mod loaded successfully! Credit: SalyVn");
     }
 
-    /**
-     * Dynamically finds and invokes the exact KeyBinding constructor available at runtime.
-     * Prevents NoSuchMethodError across varying Minecraft / Fabric / Lunar bytecode versions.
-     */
     private static KeyBinding createKeyBinding(String id, int keyCode, String category) {
         try {
             for (Constructor<?> c : KeyBinding.class.getConstructors()) {
@@ -171,21 +167,9 @@ public class WynncraftVietnamese implements ClientModInitializer {
                     .then(ClientCommandManager.literal("reload").executes(context -> {
                         ConfigManager.load();
                         TranslationEngine.getInstance().getDictionaryManager().init();
-                        context.getSource().sendFeedback(Text.literal("§6[Wynncraft VI] §aĐã tải lại toàn bộ từ điển RPG và cấu hình thành công!"));
+                        context.getSource().sendFeedback(Text.literal("§6[Wynncraft VI] §aĐã tải lại toàn bộ từ điển RPG thủ công thành công!"));
                         return 1;
                     }))
-                    .then(ClientCommandManager.literal("cache")
-                            .then(ClientCommandManager.literal("size").executes(context -> {
-                                int count = TranslationEngine.getInstance().getCache().size();
-                                context.getSource().sendFeedback(Text.literal("§6[Wynncraft VI] §fSố câu đã lưu trong bộ nhớ đệm cache: §e" + count));
-                                return 1;
-                            }))
-                            .then(ClientCommandManager.literal("clear").executes(context -> {
-                                TranslationEngine.getInstance().getCache().clear();
-                                context.getSource().sendFeedback(Text.literal("§6[Wynncraft VI] §aĐã xóa toàn bộ bộ nhớ đệm cache!"));
-                                return 1;
-                            }))
-                    )
                     .then(ClientCommandManager.literal("config").executes(context -> {
                         MinecraftClient client = MinecraftClient.getInstance();
                         client.send(() -> client.setScreen(new ModMenuIntegration().getModConfigScreenFactory().create(client.currentScreen)));
@@ -197,7 +181,6 @@ public class WynncraftVietnamese implements ClientModInitializer {
                         context.getSource().sendFeedback(Text.literal("§e/wynnvi toggle §7- Bật/Tắt dịch nhanh"));
                         context.getSource().sendFeedback(Text.literal("§e/wynnvi config §7- Mở bảng cài đặt"));
                         context.getSource().sendFeedback(Text.literal("§e/wynnvi reload §7- Tải lại dữ liệu từ điển"));
-                        context.getSource().sendFeedback(Text.literal("§e/wynnvi cache size/clear §7- Quản lý bộ nhớ đệm"));
                         context.getSource().sendFeedback(Text.literal("§7Phím tắt: §bV §7(Bật/Tắt), §bO §7(Cài đặt)"));
                         return 1;
                     })
